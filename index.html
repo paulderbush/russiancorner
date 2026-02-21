@@ -36,15 +36,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 50px; /* Чуть больше воздуха */
+            padding: 30px 50px; 
             width: 100%;
         }
 
         .logo img {
-            height: 160px; /* Увеличили размер в 2 раза! */
+            height: 120px; /* Средний, аккуратный размер для ПК */
             width: auto;
-            border-radius: 35px; /* Сделали квадрат с мягкими углами */
-            box-shadow: 0 8px 25px rgba(74, 46, 27, 0.2); /* Тень стала солиднее */
+            /* Убрали скругления и тени, чтобы чистая PNG отображалась как есть */
         }
 
         /* Переключатель языков в стекле */
@@ -58,7 +57,7 @@
         .lang-btn {
             background: none;
             border: none;
-            font-size: 18px; /* Чуть крупнее шрифт */
+            font-size: 18px; 
             font-weight: 600;
             color: rgba(74, 46, 27, 0.5);
             cursor: pointer;
@@ -120,13 +119,12 @@
         /* Адаптация под телефоны */
         @media (max-width: 700px) {
             header { 
-                flex-direction: column; /* Ставим лого над языками */
-                gap: 25px;
-                padding: 30px 20px; 
+                flex-direction: row; /* Возвращаем в одну строку */
+                justify-content: space-between;
+                padding: 20px; 
             }
             .logo img { 
-                height: 130px; /* Чуть меньше на телефоне, но все еще крупно */
-                border-radius: 30px;
+                height: 60px; /* Строго в 2 раза меньше ПК-версии */
             }
             .coming-soon-card { padding: 40px 25px; border-radius: 40px; }
             h1 { font-size: 30px; }
