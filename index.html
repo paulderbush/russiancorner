@@ -4,13 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Russian Corner | Coming Soon</title>
+    
+    <link rel="icon" href="favicon-light.png" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="favicon-dark.png" media="(prefers-color-scheme: dark)">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Сбрасываем базовые отступы и ставим красивый шрифт от Apple */
+        /* Сбрасываем базовые отступы и ставим новый шрифт Montserrat */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* Тот самый радиальный бежевый градиент */
@@ -31,19 +39,17 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
         }
 
-        /* Шапка сайта */
+        /* Шапка сайта: на ПК только языки справа */
         header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: flex-end; 
             padding: 30px 50px; 
             width: 100%;
         }
 
-        .logo img {
-            height: 120px; /* Средний, аккуратный размер для ПК */
-            width: auto;
-            /* Убрали скругления и тени, чтобы чистая PNG отображалась как есть */
+        /* Контейнер мобильного логотипа (спрятан на ПК) */
+        .mobile-logo-container {
+            display: none;
         }
 
         /* Переключатель языков в стекле */
@@ -78,18 +84,19 @@
         }
 
         .coming-soon-card {
-            max-width: 650px;
+            max-width: 850px; /* Сделали плашку ощутимо шире! */
             width: 100%;
             padding: 50px 40px;
             border-radius: 50px; 
             text-align: center;
         }
 
-        h1 {
-            font-size: 38px;
-            margin-bottom: 25px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+        /* Логотип внутри плашки на ПК */
+        .desktop-logo {
+            height: 120px;
+            width: auto;
+            display: block;
+            margin: 0 auto 25px auto;
         }
 
         p {
@@ -119,15 +126,26 @@
         /* Адаптация под телефоны */
         @media (max-width: 700px) {
             header { 
-                flex-direction: row; /* Возвращаем в одну строку */
-                justify-content: space-between;
-                padding: 20px; 
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                padding: 30px 20px 10px 20px; 
             }
-            .logo img { 
-                height: 60px; /* Строго в 2 раза меньше ПК-версии */
+            .mobile-logo-container {
+                display: block; /* Показываем логотип сверху на мобилке */
+            }
+            .mobile-logo {
+                height: 70px;
+                width: auto;
+            }
+            .lang-switcher {
+                margin: 0 auto;
+            }
+            .desktop-logo {
+                display: none; /* Прячем лого внутри плашки на телефоне */
             }
             .coming-soon-card { padding: 40px 25px; border-radius: 40px; }
-            h1 { font-size: 30px; }
             p { font-size: 17px; }
         }
     </style>
@@ -135,9 +153,10 @@
 <body>
 
     <header>
-        <div class="logo">
-            <img src="logo.png" alt="Russian Corner Logo">
+        <div class="mobile-logo-container">
+            <img src="logo.png" alt="Russian Corner Logo" class="mobile-logo">
         </div>
+        
         <div class="lang-switcher glass">
             <button class="lang-btn active" id="btn-ru" onclick="switchLang('ru')">RU</button>
             <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
@@ -146,7 +165,8 @@
 
     <main>
         <div class="coming-soon-card glass">
-            <h1 id="title">Russian Corner</h1>
+            <img src="logo.png" alt="Russian Corner Logo" class="desktop-logo">
+            
             <p id="description">
                 Живете в Лондоне и скучаете по вкусной домашней русской кухне? Отличные новости для жителей районов Battersea, Nine Elms и Vauxhall.<br><br>
                 Russian Corner накормит вас классическими блюдами, такими как оливье, крабовый салат, домашние пельмени и шарлотка. Блюда готовятся каждый день и доставляются русскоговорящими курьерами. Все блюда готовятся без лука.<br><br>
@@ -159,17 +179,14 @@
     <script>
         const texts = {
             ru: {
-                title: "Russian Corner",
                 description: "Живете в Лондоне и скучаете по вкусной домашней русской кухне? Отличные новости для жителей районов Battersea, Nine Elms и Vauxhall.<br><br>Russian Corner накормит вас классическими блюдами, такими как оливье, крабовый салат, домашние пельмени и шарлотка. Блюда готовятся каждый день и доставляются русскоговорящими курьерами. Все блюда готовятся без лука.<br><br><strong>Скоро открытие.</strong>"
             },
             en: {
-                title: "Russian Corner",
                 description: "Living in London and missing delicious homemade Russian food? Great news for residents of Battersea, Nine Elms, and Vauxhall.<br><br>Russian Corner will feed you with classic dishes like Olivier, crab salad, homemade pelmeni, and sharlotka. Meals are prepared fresh every day and delivered by Russian-speaking couriers. All dishes are prepared without onions.<br><br><strong>Coming soon.</strong>"
             }
         };
 
         function switchLang(lang) {
-            document.getElementById('title').innerHTML = texts[lang].title;
             document.getElementById('description').innerHTML = texts[lang].description;
             
             document.getElementById('btn-ru').classList.remove('active');
