@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Russian Corner | Coming Soon</title>
+    <style>
+        /* Сбрасываем базовые отступы и ставим красивый шрифт от Apple */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* Тот самый радиальный бежевый градиент */
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: radial-gradient(circle at center, #E8DCC8 0%, #8C7B67 100%);
+            color: #4A2E1B;
+        }
+
+        /* Общий класс для эффекта Liquid Glass */
+        .glass {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        /* Шапка сайта */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 50px; /* Чуть больше воздуха */
+            width: 100%;
+        }
+
+        .logo img {
+            height: 160px; /* Увеличили размер в 2 раза! */
+            width: auto;
+            border-radius: 35px; /* Сделали квадрат с мягкими углами */
+            box-shadow: 0 8px 25px rgba(74, 46, 27, 0.2); /* Тень стала солиднее */
+        }
+
+        /* Переключатель языков в стекле */
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
+            padding: 12px 25px;
+            border-radius: 30px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            font-size: 18px; /* Чуть крупнее шрифт */
+            font-weight: 600;
+            color: rgba(74, 46, 27, 0.5);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .lang-btn.active {
+            color: #4A2E1B;
+        }
+
+        /* Центральная карточка-заглушка */
+        main {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .coming-soon-card {
+            max-width: 650px;
+            width: 100%;
+            padding: 50px 40px;
+            border-radius: 50px; 
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 38px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            font-size: 19px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            color: #5D4037;
+        }
+
+        /* Стеклянная кнопка-почта */
+        .email-link {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 30px;
+            color: #4A2E1B;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 19px;
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+
+        .email-link:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Адаптация под телефоны */
+        @media (max-width: 700px) {
+            header { 
+                flex-direction: column; /* Ставим лого над языками */
+                gap: 25px;
+                padding: 30px 20px; 
+            }
+            .logo img { 
+                height: 130px; /* Чуть меньше на телефоне, но все еще крупно */
+                border-radius: 30px;
+            }
+            .coming-soon-card { padding: 40px 25px; border-radius: 40px; }
+            h1 { font-size: 30px; }
+            p { font-size: 17px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Russian Corner Logo">
+        </div>
+        <div class="lang-switcher glass">
+            <button class="lang-btn active" id="btn-ru" onclick="switchLang('ru')">RU</button>
+            <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="coming-soon-card glass">
+            <h1 id="title">Russian Corner</h1>
+            <p id="description">
+                Живете в Лондоне и скучаете по вкусной домашней русской кухне? Отличные новости для жителей районов Battersea, Nine Elms и Vauxhall.<br><br>
+                Russian Corner накормит вас классическими блюдами, такими как оливье, крабовый салат, домашние пельмени и шарлотка. Блюда готовятся каждый день и доставляются русскоговорящими курьерами. Все блюда готовятся без лука.<br><br>
+                <strong>Скоро открытие.</strong>
+            </p>
+            <a href="mailto:info@russiancorner.co.uk" class="email-link glass">info@russiancorner.co.uk</a>
+        </div>
+    </main>
+
+    <script>
+        const texts = {
+            ru: {
+                title: "Russian Corner",
+                description: "Живете в Лондоне и скучаете по вкусной домашней русской кухне? Отличные новости для жителей районов Battersea, Nine Elms и Vauxhall.<br><br>Russian Corner накормит вас классическими блюдами, такими как оливье, крабовый салат, домашние пельмени и шарлотка. Блюда готовятся каждый день и доставляются русскоговорящими курьерами. Все блюда готовятся без лука.<br><br><strong>Скоро открытие.</strong>"
+            },
+            en: {
+                title: "Russian Corner",
+                description: "Living in London and missing delicious homemade Russian food? Great news for residents of Battersea, Nine Elms, and Vauxhall.<br><br>Russian Corner will feed you with classic dishes like Olivier, crab salad, homemade pelmeni, and sharlotka. Meals are prepared fresh every day and delivered by Russian-speaking couriers. All dishes are prepared without onions.<br><br><strong>Coming soon.</strong>"
+            }
+        };
+
+        function switchLang(lang) {
+            document.getElementById('title').innerHTML = texts[lang].title;
+            document.getElementById('description').innerHTML = texts[lang].description;
+            
+            document.getElementById('btn-ru').classList.remove('active');
+            document.getElementById('btn-en').classList.remove('active');
+            document.getElementById('btn-' + lang).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
