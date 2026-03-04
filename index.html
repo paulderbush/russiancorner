@@ -21,7 +21,7 @@ body{font-family:'Mulish',sans-serif;background:#080d18;color:var(--text);min-he
 @keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(60px,40px)}}
 @keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,-30px)}}
 @keyframes drift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,20px) scale(1.1)}}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 40px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(8,13,24,.75);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:1px solid var(--glass-border)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 40px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(8,13,24,.75);backdrop-filter:blur(30px);border-bottom:1px solid var(--glass-border)}
 .nav-logo img{height:34px;display:block;cursor:pointer}
 .nav-links{display:flex;gap:4px}
 .nav-link{padding:8px 16px;border-radius:50px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;border:none;background:none;transition:all .25s;font-family:'Mulish',sans-serif}
@@ -47,7 +47,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 40px;display:fl
 .hero-card{border-radius:20px;background:var(--glass-bg);backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);overflow:hidden;transition:transform .3s;cursor:pointer}
 .hero-card:hover{transform:translateY(-4px)}
 .hero-card:first-child{grid-column:1/-1;display:flex}
-.hero-card-img{width:130px;height:110px;object-fit:cover;flex-shrink:0}
+.hero-card-img{object-fit:cover;flex-shrink:0}
 .hero-card:first-child .hero-card-img{width:140px;height:120px}
 .hero-card-small .hero-card-img{width:100%;height:100px}
 .hero-card-body{padding:14px 16px;display:flex;flex-direction:column;justify-content:center}
@@ -63,7 +63,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 40px;display:fl
 .section-title{font-family:'Unbounded',sans-serif;font-size:26px;font-weight:700;letter-spacing:-.5px}
 .section-sub{color:var(--text-muted);font-size:13px;margin-top:6px}
 .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
-.product-card{border-radius:24px;background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);overflow:hidden;transition:all .35s cubic-bezier(.23,1,.32,1);display:flex;flex-direction:column}
+.product-card{border-radius:24px;background:var(--glass-bg);backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);overflow:hidden;transition:all .35s cubic-bezier(.23,1,.32,1);display:flex;flex-direction:column}
 .product-card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.2);box-shadow:0 20px 50px rgba(0,0,0,.35)}
 .product-img-wrap{width:100%;height:200px;position:relative;overflow:hidden;flex-shrink:0}
 .product-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
@@ -104,9 +104,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 40px;display:fl
 .add-btn{width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--blue-light),var(--red-light));color:#fff;font-size:22px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .25s;box-shadow:0 4px 16px rgba(45,108,223,.3)}
 .add-btn:hover{transform:scale(1.12)}
 .add-btn.added{background:linear-gradient(135deg,#1a7a4a,#2db865)}
-.modal-overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.open{opacity:1;pointer-events:all}
-.modal{background:rgba(12,18,35,.97);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border:1px solid var(--glass-border);border-radius:28px;width:100%;max-width:560px;max-height:88vh;overflow-y:auto;transform:scale(.94) translateY(20px);transition:transform .35s cubic-bezier(.23,1,.32,1);padding:36px}
+.modal{background:rgba(12,18,35,.97);backdrop-filter:blur(40px);border:1px solid var(--glass-border);border-radius:28px;width:100%;max-width:560px;max-height:88vh;overflow-y:auto;transform:scale(.94) translateY(20px);transition:transform .35s cubic-bezier(.23,1,.32,1);padding:36px}
 .modal-overlay.open .modal{transform:scale(1) translateY(0)}
 .modal-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:26px}
 .modal-title{font-family:'Unbounded',sans-serif;font-size:18px;font-weight:700;line-height:1.3}
@@ -126,21 +126,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 40px;display:fl
 .ingr-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .ingr-tag{padding:4px 10px;border-radius:50px;background:var(--glass-bg);border:1px solid var(--glass-border);font-size:11px;color:var(--text-muted)}
 .allergen-tag{border-color:rgba(217,58,80,.4);background:rgba(217,58,80,.1);color:#f0a0a0}
-.email-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:50px;background:linear-gradient(135deg,rgba(45,108,223,.3),rgba(217,58,80,.3));border:1px solid rgba(255,255,255,.15);color:var(--text);font-family:'Mulish',sans-serif;font-size:13px;font-weight:600;text-decoration:none;transition:all .25s;margin-top:8px;cursor:pointer}
-.email-btn:hover{transform:translateY(-1px)}
+.email-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:50px;background:linear-gradient(135deg,rgba(45,108,223,.3),rgba(217,58,80,.3));border:1px solid rgba(255,255,255,.15);color:var(--text);font-family:'Mulish',sans-serif;font-size:13px;font-weight:600;text-decoration:none;transition:all .25s;margin-top:8px}
+.email-btn:hover{background:linear-gradient(135deg,rgba(45,108,223,.5),rgba(217,58,80,.5));transform:translateY(-1px)}
 .delivery-zone{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;background:var(--glass-bg);border:1px solid var(--glass-border);margin-bottom:8px}
 .coming-soon-badge{padding:3px 10px;border-radius:50px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:10px;font-weight:700;margin-left:auto}
-.co-input{padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.06);color:#f0eee8;font-family:'Mulish',sans-serif;font-size:13px;outline:none;width:100%;transition:border-color .2s}
-.co-input:focus{border-color:rgba(45,108,223,.5)}
-.co-input::placeholder{color:rgba(240,238,232,.35)}
 .cart-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s}
 .cart-overlay.open{opacity:1;pointer-events:all}
-.cart-drawer{position:fixed;top:0;right:0;bottom:0;z-index:201;width:420px;max-width:95vw;background:rgba(10,16,30,.97);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border-left:1px solid var(--glass-border);transform:translateX(100%);transition:transform .4s cubic-bezier(.23,1,.32,1);display:flex;flex-direction:column}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;z-index:201;width:420px;max-width:95vw;background:rgba(10,16,30,.97);backdrop-filter:blur(40px);border-left:1px solid var(--glass-border);transform:translateX(100%);transition:transform .4s cubic-bezier(.23,1,.32,1);display:flex;flex-direction:column}
 .cart-drawer.open{transform:translateX(0)}
 .cart-header{padding:24px 24px 16px;border-bottom:1px solid var(--glass-border);display:flex;align-items:center;justify-content:space-between}
 .cart-title{font-family:'Unbounded',sans-serif;font-size:16px;font-weight:700}
-.cart-close{width:32px;height:32px;border-radius:50%;background:var(--glass-bg);border:1px solid var(--glass-border);color:var(--text);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.cart-close:hover{background:rgba(255,255,255,.1)}
+.cart-close{width:32px;height:32px;border-radius:50%;background:var(--glass-bg);border:1px solid var(--glass-border);color:var(--text);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .cart-items{flex:1;overflow-y:auto;padding:16px 24px}
 .cart-item{display:flex;align-items:flex-start;gap:12px;padding:13px;border-radius:16px;background:var(--glass-bg);border:1px solid var(--glass-border);margin-bottom:9px;animation:slideIn .3s ease}
 @keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
@@ -150,8 +146,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 40px;display:fl
 .cart-item-meta{font-size:10px;color:var(--text-muted);margin-bottom:4px}
 .cart-item-price{font-size:13px;font-weight:700;color:var(--gold)}
 .cart-qty{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.05);border-radius:50px;padding:3px 7px;flex-shrink:0}
-.qty-btn{width:20px;height:20px;border-radius:50%;background:var(--glass-bg);border:1px solid var(--glass-border);color:var(--text);cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.qty-btn:hover{background:rgba(255,255,255,.12)}
+.qty-btn{width:20px;height:20px;border-radius:50%;background:var(--glass-bg);border:1px solid var(--glass-border);color:var(--text);cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center}
 .qty-num{font-size:12px;font-weight:700;min-width:14px;text-align:center}
 .cart-empty{text-align:center;padding:50px 20px;color:var(--text-muted)}
 .cart-empty-icon{font-size:48px;margin-bottom:12px}
@@ -159,15 +154,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 40px;display:fl
 .cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .cart-total-label{font-size:12px;color:var(--text-muted)}
 .cart-total-amount{font-family:'Unbounded',sans-serif;font-size:21px;font-weight:700;color:var(--gold)}
-.checkout-btn{width:100%;padding:16px;border-radius:50px;border:none;cursor:pointer;font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--blue-light),var(--red-light));box-shadow:0 8px 32px rgba(45,108,223,.3);transition:all .3s;position:relative;overflow:hidden}
-.checkout-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 16px 48px rgba(45,108,223,.4)}
+.checkout-btn{width:100%;padding:16px;border-radius:50px;border:none;cursor:pointer;font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--blue-light),var(--red-light));box-shadow:0 8px 32px rgba(45,108,223,.3);transition:all .3s}
+.checkout-btn:hover:not(:disabled){transform:translateY(-2px)}
 .checkout-btn:disabled{opacity:.45;cursor:not-allowed}
 .stripe-note{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:9px;font-size:11px;color:var(--text-muted)}
 .stripe-badge{padding:2px 7px;border-radius:50px;background:rgba(99,91,255,.15);border:1px solid rgba(99,91,255,.3);color:#9b8fff;font-weight:700;font-size:10px}
+.co-input{padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.06);color:#f0eee8;font-family:'Mulish',sans-serif;font-size:13px;outline:none;width:100%;transition:border-color .2s}
+.co-input:focus{border-color:rgba(45,108,223,.5)}
+.co-input::placeholder{color:rgba(240,238,232,.35)}
 .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);z-index:400;padding:11px 20px;border-radius:50px;background:rgba(20,30,55,.97);backdrop-filter:blur(20px);border:1px solid var(--glass-border);font-size:12px;font-weight:600;white-space:nowrap;transition:transform .4s cubic-bezier(.23,1,.32,1)}
 .toast.show{transform:translateX(-50%) translateY(0)}
 footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padding:36px 40px;text-align:center;color:var(--text-muted);font-size:12px}
-@media(max-width:900px){nav{padding:10px 14px}.nav-links{display:none}.hero{grid-template-columns:1fr;padding:100px 16px 50px;gap:28px}.hero-visual{grid-template-columns:1fr 1fr}.section{padding:32px 16px}.products-grid{grid-template-columns:1fr}.modal{padding:22px;max-height:92vh}.kbju-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){nav{padding:10px 14px}.nav-links{display:none}.hero{grid-template-columns:1fr;padding:100px 16px 50px;gap:28px}.section{padding:32px 16px}.products-grid{grid-template-columns:1fr}.modal{padding:22px}.kbju-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -176,9 +174,9 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
 <nav>
   <div class="nav-logo"><img src="/images/logo.png" alt="Russian Corner" onclick="window.scrollTo({top:0,behavior:'smooth'})"></div>
   <div class="nav-links">
-    <button class="nav-link active" onclick="scrollToProducts()">Menu</button>
-    <button class="nav-link" onclick="openModal('about')">About us</button>
-    <button class="nav-link" onclick="openModal('delivery')">Delivery &amp; payment</button>
+    <button class="nav-link active" id="nav-menu-btn" onclick="scrollToProducts()">Menu</button>
+    <button class="nav-link" id="nav-about-btn" onclick="openModal('about')">About us</button>
+    <button class="nav-link" id="nav-delivery-btn" onclick="openModal('delivery')">Delivery &amp; payment</button>
   </div>
   <div class="nav-right">
     <div class="lang-switcher">
@@ -194,7 +192,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
 
 <section class="hero">
   <div>
-    <div class="hero-badge"><div class="hero-badge-dot"></div><span id="hero-badge-text">✦ Coming Soon</span></div>
+    <div class="hero-badge"><div class="hero-badge-dot"></div><span id="hero-badge-text">✦ COMING SOON</span></div>
     <h1 class="hero-title"><span class="grad" id="hero-title-1">Taste of Russia</span><br><span id="hero-title-2">at your door</span></h1>
     <p class="hero-sub" id="hero-sub">Living in London and missing real home-style Russian food? Great news for residents of Battersea, Nine Elms and Vauxhall. Russian Corner cooks fresh every day. Delivered by Russian-speaking couriers. All dishes made without onion.</p>
     <button class="hero-btn" onclick="scrollToProducts()"><span id="hero-btn-text">Browse menu →</span></button>
@@ -202,15 +200,15 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
   <div class="hero-visual">
     <div class="hero-card" onclick="scrollToProducts()">
       <img class="hero-card-img" src="/images/olivier.jpg" alt="Olivier Salad" onerror="this.style.display='none'">
-      <div class="hero-card-body"><div class="hero-card-name" id="hc1-name">Olivier Salad</div><div class="hero-card-price">from £13.99</div></div>
+      <div class="hero-card-body"><div class="hero-card-name" id="hero-card-1-name">Olivier Salad</div><div class="hero-card-price">from £13.99</div></div>
     </div>
     <div class="hero-card hero-card-small" onclick="scrollToProducts()">
-      <img class="hero-card-img" src="/images/dumplings.jpg" alt="Pelmeni" onerror="this.style.display='none'">
-      <div class="hero-card-body"><div class="hero-card-name" id="hc2-name">Pelmeni</div><div class="hero-card-price">from £29.99</div></div>
+      <img class="hero-card-img" src="/images/dumplings.jpg" alt="Pelmeni" style="width:100%;height:100px" onerror="this.style.display='none'">
+      <div class="hero-card-body"><div class="hero-card-name" id="hero-card-2-name">Pelmeni</div><div class="hero-card-price">from £29.99</div></div>
     </div>
     <div class="hero-card hero-card-small" onclick="scrollToProducts()">
-      <img class="hero-card-img" src="/images/blini.jpg" alt="Blini" onerror="this.style.display='none'">
-      <div class="hero-card-body"><div class="hero-card-name" id="hc3-name">Blini</div><div class="hero-card-price">from £9.99</div></div>
+      <img class="hero-card-img" src="/images/blini.jpg" alt="Blini" style="width:100%;height:100px" onerror="this.style.display='none'">
+      <div class="hero-card-body"><div class="hero-card-name" id="hero-card-3-name">Blini</div><div class="hero-card-price">from £9.99</div></div>
     </div>
   </div>
 </section>
@@ -231,30 +229,30 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
       <button class="modal-close" onclick="closeModal('about')">✕</button>
     </div>
     <div class="modal-section">
-      <div class="modal-section-title" id="about-story-title">Our story</div>
-      <p class="modal-text" id="about-story-text">Russian Corner brings authentic home-style Russian cuisine to the heart of London. We cook fresh every day — no preservatives, no onion. Our mission is to give residents of Battersea, Nine Elms and Vauxhall the flavours they grew up with.</p>
+      <div class="modal-section-title" id="about-story-label">Our story</div>
+      <p class="modal-text" id="about-story">Russian Corner brings authentic home-style Russian cuisine to the heart of London. We cook fresh every day using quality ingredients — no preservatives, no onion. Our mission is to give residents of Battersea, Nine Elms and Vauxhall the flavours they grew up with.</p>
     </div>
     <div class="modal-section">
-      <div class="modal-section-title" id="about-details-title">Company details</div>
-      <div class="info-row"><span class="info-row-label" id="abl-name">Registered name</span><span class="info-row-value">Hype Frame Ltd</span></div>
-      <div class="info-row"><span class="info-row-label" id="abl-trading">Trading as</span><span class="info-row-value">Russian Corner</span></div>
-      <div class="info-row"><span class="info-row-label" id="abl-type">Type</span><span class="info-row-value">Private Limited Company</span></div>
-      <div class="info-row"><span class="info-row-label" id="abl-no">Company No.</span><span class="info-row-value">16555812</span></div>
-      <div class="info-row"><span class="info-row-label" id="abl-addr">Registered address</span><span class="info-row-value">20 Wenlock Road, London, N1 7GU</span></div>
-      <div class="info-row"><span class="info-row-label" id="abl-inc">Incorporated</span><span class="info-row-value">2 July 2025</span></div>
+      <div class="modal-section-title" id="about-details-label">Company details</div>
+      <div class="info-row"><span class="info-row-label" id="about-reg-name-label">Registered name</span><span class="info-row-value">Hype Frame Ltd</span></div>
+      <div class="info-row"><span class="info-row-label" id="about-trading-label">Trading as</span><span class="info-row-value">Russian Corner</span></div>
+      <div class="info-row"><span class="info-row-label" id="about-type-label">Type</span><span class="info-row-value">Private Limited Company</span></div>
+      <div class="info-row"><span class="info-row-label" id="about-regno-label">Company No.</span><span class="info-row-value">16555812</span></div>
+      <div class="info-row"><span class="info-row-label" id="about-addr-label">Registered address</span><span class="info-row-value">20 Wenlock Road, London, N1 7GU</span></div>
+      <div class="info-row"><span class="info-row-label" id="about-inc-label">Incorporated</span><span class="info-row-value">2 July 2025</span></div>
     </div>
     <div class="modal-section">
-      <div class="modal-section-title" id="about-contact-title">Contact</div>
+      <div class="modal-section-title" id="about-contact-label">Contact</div>
       <p class="modal-text" id="about-contact-text">Got questions? We respond within 24 hours.</p>
       <a href="mailto:info@russiancorner.co.uk" class="email-btn">✉ info@russiancorner.co.uk</a>
     </div>
     <div class="modal-section">
-      <div class="modal-section-title" id="about-returns-title">Returns policy</div>
-      <p class="modal-text" id="about-returns-text">As all our products are perishable food items, we are unable to accept returns once delivery has taken place. If your order arrived in unsatisfactory condition, please contact us within 2 hours of delivery with a photo.</p>
+      <div class="modal-section-title" id="about-returns-label">Returns policy</div>
+      <p class="modal-text" id="about-returns">As all our products are perishable food items, we are unable to accept returns once delivery has taken place. If your order arrived in unsatisfactory condition, please contact us within 2 hours of delivery with a photo.</p>
     </div>
     <div class="modal-section">
       <div class="modal-section-title">Privacy Policy</div>
-      <p class="modal-text" id="about-privacy-text">Hype Frame Ltd (trading as Russian Corner) processes your personal data solely to process and deliver your order. Payment data is processed by Stripe and not stored by us. You may request access or deletion of your data at info@russiancorner.co.uk. This policy complies with UK GDPR and the Data Protection Act 2018.</p>
+      <p class="modal-text" id="about-privacy">Hype Frame Ltd (trading as Russian Corner) processes your personal data solely to process and deliver your order. Payment data is processed by Stripe and not stored by us. You may request access or deletion of your data at info@russiancorner.co.uk. This policy complies with UK GDPR and the Data Protection Act 2018.</p>
     </div>
   </div>
 </div>
@@ -263,31 +261,31 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
 <div class="modal-overlay" id="modal-delivery" onclick="if(event.target===this)closeModal('delivery')">
   <div class="modal">
     <div class="modal-header">
-      <div class="modal-title" id="del-title">Delivery &amp; payment</div>
+      <div class="modal-title" id="delivery-title">Delivery &amp; payment</div>
       <button class="modal-close" onclick="closeModal('delivery')">✕</button>
     </div>
     <div class="modal-section">
-      <div class="modal-section-title" id="del-fee-title">Fee</div>
-      <div class="info-row"><span class="info-row-label" id="del-courier-label">Courier delivery</span><span class="info-row-value" style="color:var(--gold);font-family:'Unbounded',sans-serif">£3.99</span></div>
-      <div class="info-row"><span class="info-row-label" id="del-min-label">Minimum order</span><span class="info-row-value">£15.00</span></div>
+      <div class="modal-section-title" id="delivery-fee-label">Fee</div>
+      <div class="info-row"><span class="info-row-label" id="delivery-courier-label">Courier delivery</span><span class="info-row-value" style="color:var(--gold);font-family:'Unbounded',sans-serif">£3.99</span></div>
+      <div class="info-row"><span class="info-row-label" id="delivery-min-label">Minimum order</span><span class="info-row-value">£15.00</span></div>
     </div>
     <div class="modal-section">
-      <div class="modal-section-title" id="del-zones-title">Delivery zones</div>
+      <div class="modal-section-title" id="delivery-zones-label">Delivery zones</div>
       <div class="delivery-zone"><div style="font-size:20px">📍</div><div><div style="font-size:13px;font-weight:600">Battersea Power Station</div><div style="font-size:11px;color:var(--text-muted)">SW8, SW11</div></div></div>
       <div class="delivery-zone"><div style="font-size:20px">📍</div><div><div style="font-size:13px;font-weight:600">Nine Elms</div><div style="font-size:11px;color:var(--text-muted)">SW8</div></div></div>
       <div class="delivery-zone"><div style="font-size:20px">📍</div><div><div style="font-size:13px;font-weight:600">Vauxhall</div><div style="font-size:11px;color:var(--text-muted)">SE11, SW8</div></div></div>
-      <div class="delivery-zone" style="border-color:rgba(201,168,76,.25);background:rgba(201,168,76,.06)"><div style="font-size:20px">🚀</div><div style="flex:1"><div style="font-size:13px;font-weight:600" id="del-deliveroo">Deliveroo — coming soon</div><div style="font-size:11px;color:var(--text-muted)" id="del-deliveroo-sub">Expanding across London</div></div><div class="coming-soon-badge" id="del-soon-badge">Soon</div></div>
+      <div class="delivery-zone" style="border-color:rgba(201,168,76,.25);background:rgba(201,168,76,.06)"><div style="font-size:20px">🚀</div><div style="flex:1"><div style="font-size:13px;font-weight:600" id="deliveroo-text">Deliveroo — coming soon</div><div style="font-size:11px;color:var(--text-muted)" id="deliveroo-sub">Expanding across London</div></div><div class="coming-soon-badge" id="soon-badge">Soon</div></div>
     </div>
     <div class="modal-section">
-      <div class="modal-section-title" id="del-couriers-title">Our couriers</div>
-      <p class="modal-text" id="del-couriers-text">All deliveries are made by Russian-speaking couriers. Food is delivered chilled in insulated bags. Delivery time is confirmed at checkout.</p>
+      <div class="modal-section-title" id="delivery-couriers-label">Our couriers</div>
+      <p class="modal-text" id="delivery-couriers-text">All deliveries are made by Russian-speaking couriers. Food is delivered chilled in insulated bags. Delivery time is confirmed at checkout.</p>
     </div>
     <div class="modal-section">
-      <div class="modal-section-title" id="del-payment-title">Payment</div>
-      <p class="modal-text" id="del-payment-text">We accept all major cards via Stripe — Visa, Mastercard, Amex. Your card details are SSL-encrypted and never stored on our servers.</p>
+      <div class="modal-section-title" id="delivery-payment-label">Payment</div>
+      <p class="modal-text" id="delivery-payment-text">We accept all major cards via Stripe — Visa, Mastercard, Amex. Your card details are SSL-encrypted and never stored on our servers.</p>
     </div>
     <div class="modal-section">
-      <div class="modal-section-title" id="del-q-title">Questions?</div>
+      <div class="modal-section-title" id="delivery-q-label">Questions?</div>
       <a href="mailto:info@russiancorner.co.uk" class="email-btn">✉ info@russiancorner.co.uk</a>
     </div>
   </div>
@@ -308,11 +306,11 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
 <div class="modal-overlay" id="checkout-modal" onclick="if(event.target===this)closeCheckoutModal()">
   <div class="modal" style="max-width:480px">
     <div class="modal-header">
-      <div class="modal-title" id="co-modal-title">Checkout</div>
+      <div class="modal-title" id="co-title">Checkout</div>
       <button class="modal-close" onclick="closeCheckoutModal()">✕</button>
     </div>
     <div class="modal-section">
-      <div class="modal-section-title" id="co-details-title">Your details</div>
+      <div class="modal-section-title" id="co-details-label">Your details</div>
       <div style="display:flex;flex-direction:column;gap:10px">
         <input id="co-name" type="text" class="co-input" placeholder="Name *">
         <input id="co-email" type="email" class="co-input" placeholder="Email *">
@@ -320,12 +318,12 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
       </div>
     </div>
     <div class="modal-section">
-      <div class="modal-section-title" id="co-delivery-title">Delivery</div>
+      <div class="modal-section-title" id="co-delivery-label">Delivery</div>
       <div style="display:flex;flex-direction:column;gap:10px">
         <input id="co-address" type="text" class="co-input" placeholder="Delivery address *">
         <input id="co-instructions" type="text" class="co-input" placeholder="Flat No., door code...">
         <input id="co-time" type="text" class="co-input" placeholder="Preferred delivery time">
-        <textarea id="co-comment" rows="2" class="co-input" placeholder="Comment" style="resize:none"></textarea>
+        <textarea id="co-comment" rows="2" class="co-input" placeholder="Comment to order" style="resize:none"></textarea>
       </div>
     </div>
     <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:13px 16px;margin-bottom:18px;font-size:12px;color:rgba(240,238,232,.6);line-height:1.6">
@@ -334,7 +332,9 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
     <button id="submit-checkout-btn" onclick="submitCheckout()" style="width:100%;padding:16px;border-radius:50px;border:none;cursor:pointer;font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;color:#fff;background:linear-gradient(135deg,#2d6cdf,#d93a50);box-shadow:0 8px 32px rgba(45,108,223,.3);transition:all .3s">
       <span id="co-submit-text">Proceed to payment →</span>
     </button>
-    <div style="text-align:center;margin-top:10px;font-size:11px;color:rgba(240,238,232,.4)">🔒 <span id="co-secure-text">Secure payment via Stripe</span></div>
+    <div style="text-align:center;margin-top:10px;font-size:11px;color:rgba(240,238,232,.4)">
+      🔒 <span id="co-secure-text">Secure payment via Stripe</span>
+    </div>
   </div>
 </div>
 
@@ -352,9 +352,9 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
       <div class="cart-total-amount" id="cartTotal">£0.00</div>
     </div>
     <button class="checkout-btn" id="checkoutBtn" onclick="checkout()" disabled>
-      <span id="cart-pay-btn">Pay →</span>
+      <span id="pay-btn-text">Pay →</span>
     </button>
-    <div class="stripe-note">🔒 <span id="cart-secure-note">Secure payment</span> <span class="stripe-badge">stripe</span></div>
+    <div class="stripe-note">🔒 <span id="secure-label">Secure payment</span> <span class="stripe-badge">stripe</span></div>
   </div>
 </div>
 
@@ -367,97 +367,185 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
 
 <script>
 var lang = 'en';
-var cart = [];
 
-var T = {
+var TR = {
   en: {
-    'nav-menu':'Menu','nav-about':'About us','nav-delivery':'Delivery & payment','cart-label':'Cart',
-    'hero-badge':'✦ Coming Soon','hero-title-1':'Taste of Russia','hero-title-2':'at your door',
-    'hero-sub':'Living in London and missing real home-style Russian food? Great news for residents of Battersea, Nine Elms and Vauxhall. Russian Corner cooks fresh every day. Delivered by Russian-speaking couriers. All dishes made without onion.',
-    'hero-btn-text':'Browse menu →','hc1-name':'Olivier Salad','hc2-name':'Pelmeni','hc3-name':'Blini',
-    'menu-title':'Menu','menu-sub':'Fresh, authentic, homemade · All dishes without onion',
-    'about-title':'About us','about-story-title':'Our story',
-    'about-story-text':'Russian Corner brings authentic home-style Russian cuisine to the heart of London. We cook fresh every day — no preservatives, no onion. Our mission is to give residents of Battersea, Nine Elms and Vauxhall the flavours they grew up with.',
-    'about-details-title':'Company details','abl-name':'Registered name','abl-trading':'Trading as','abl-type':'Type','abl-no':'Company No.','abl-addr':'Registered address','abl-inc':'Incorporated',
-    'about-contact-title':'Contact','about-contact-text':'Got questions? We respond within 24 hours.',
-    'about-returns-title':'Returns policy','about-returns-text':'As all our products are perishable food items, we are unable to accept returns once delivery has taken place. If your order arrived in unsatisfactory condition, please contact us within 2 hours of delivery with a photo.',
-    'about-privacy-text':'Hype Frame Ltd (trading as Russian Corner) processes your personal data solely to process and deliver your order. Payment data is processed by Stripe and not stored by us. You may request access or deletion of your data at info@russiancorner.co.uk. This policy complies with UK GDPR and the Data Protection Act 2018.',
-    'del-title':'Delivery & payment','del-fee-title':'Fee','del-courier-label':'Courier delivery','del-min-label':'Minimum order',
-    'del-zones-title':'Delivery zones','del-deliveroo':'Deliveroo — coming soon','del-deliveroo-sub':'Expanding across London','del-soon-badge':'Soon',
-    'del-couriers-title':'Our couriers','del-couriers-text':'All deliveries are made by Russian-speaking couriers. Food is delivered chilled in insulated bags. Delivery time is confirmed at checkout.',
-    'del-payment-title':'Payment','del-payment-text':'We accept all major cards via Stripe — Visa, Mastercard, Amex. Your card details are SSL-encrypted and never stored on our servers.',
-    'del-q-title':'Questions?',
-    'co-modal-title':'Checkout','co-details-title':'Your details','co-delivery-title':'Delivery',
-    'co-delivery-note':'Delivery £3.99 · Battersea, Nine Elms, Vauxhall','co-submit-text':'Proceed to payment →','co-secure-text':'Secure payment via Stripe',
-    'cart-drawer-title':'Cart','cart-total-label':'Total','cart-pay-btn':'Pay →','cart-secure-note':'Secure payment',
-    'variantLabel':'Size / Quantity','sauceLabel':'Sauce (+£0.99)','containerTitle':'📦 Deliver in container +£4.99','containerSub':'Container can be reused — less waste',
-    'infoLabel':'Ingredients','addedText':'Added:','cartEmpty':'Your cart is empty',
-    'ingrLabel':'Ingredients','allerLabel':'Allergens','nutriLabel':'Nutrition (per 100 g)','extraLabel':'Good to know',
-    'noAllergen':'None','connectingText':'Connecting...','errorText':'Error: ','requiredText':'Please fill in all required fields (*)',
-    'tagHit':'Hit','tagNew':'New'
+    'nav-menu-btn': 'Menu', 'nav-about-btn': 'About us', 'nav-delivery-btn': 'Delivery & payment',
+    'cart-label': 'Cart', 'cart-drawer-title': 'Cart', 'cart-total-label': 'Total',
+    'pay-btn-text': 'Pay →', 'secure-label': 'Secure payment',
+    'hero-badge-text': '✦ COMING SOON', 'hero-title-1': 'Taste of Russia', 'hero-title-2': 'at your door',
+    'hero-sub': 'Living in London and missing real home-style Russian food? Great news for residents of Battersea, Nine Elms and Vauxhall. Russian Corner cooks fresh every day. Delivered by Russian-speaking couriers. All dishes made without onion.',
+    'hero-btn-text': 'Browse menu →',
+    'hero-card-1-name': 'Olivier Salad', 'hero-card-2-name': 'Pelmeni', 'hero-card-3-name': 'Blini',
+    'menu-title': 'Menu', 'menu-sub': 'Fresh, authentic, homemade · All dishes without onion',
+    'about-title': 'About us', 'about-story-label': 'Our story',
+    'about-story': "Russian Corner brings authentic home-style Russian cuisine to the heart of London. We cook fresh every day using quality ingredients — no preservatives, no onion. Our mission is to give residents of Battersea, Nine Elms and Vauxhall the flavours they grew up with.",
+    'about-details-label': 'Company details', 'about-reg-name-label': 'Registered name',
+    'about-trading-label': 'Trading as', 'about-type-label': 'Type', 'about-regno-label': 'Company No.',
+    'about-addr-label': 'Registered address', 'about-inc-label': 'Incorporated',
+    'about-contact-label': 'Contact', 'about-contact-text': 'Got questions? We respond within 24 hours.',
+    'about-returns-label': 'Returns policy',
+    'about-returns': 'As all our products are perishable food items, we are unable to accept returns once delivery has taken place. If your order arrived in unsatisfactory condition, please contact us within 2 hours of delivery with a photo.',
+    'about-privacy': 'Hype Frame Ltd (trading as Russian Corner) processes your personal data solely to process and deliver your order. Payment data is processed by Stripe and not stored by us. You may request access or deletion of your data at info@russiancorner.co.uk. This policy complies with UK GDPR and the Data Protection Act 2018.',
+    'delivery-title': 'Delivery & payment', 'delivery-fee-label': 'Fee',
+    'delivery-courier-label': 'Courier delivery', 'delivery-min-label': 'Minimum order',
+    'delivery-zones-label': 'Delivery zones', 'deliveroo-text': 'Deliveroo — coming soon',
+    'deliveroo-sub': 'Expanding across London', 'soon-badge': 'Soon',
+    'delivery-couriers-label': 'Our couriers',
+    'delivery-couriers-text': 'All deliveries are made by Russian-speaking couriers. Food is delivered chilled in insulated bags. Delivery time is confirmed at checkout.',
+    'delivery-payment-label': 'Payment',
+    'delivery-payment-text': 'We accept all major cards via Stripe — Visa, Mastercard, Amex. Your card details are SSL-encrypted and never stored on our servers.',
+    'delivery-q-label': 'Questions?',
+    'co-title': 'Checkout', 'co-details-label': 'Your details', 'co-delivery-label': 'Delivery',
+    'co-delivery-note': 'Delivery £3.99 · Battersea, Nine Elms, Vauxhall',
+    'co-submit-text': 'Proceed to payment →', 'co-secure-text': 'Secure payment via Stripe',
+    'cart-empty': 'Your cart is empty', 'added-text': '✓ Added:',
+    'variant-label': 'Size / Quantity', 'sauce-label': 'Sauce (+£0.99)',
+    'container-title': '📦 Deliver in container +£4.99', 'container-sub': 'Container can be reused — less waste',
+    'info-label': 'Ingredients', 'add-label': 'Add',
+    'nutri-ingr': 'Ingredients', 'nutri-aller': 'Allergens', 'nutri-kbju': 'Nutrition (per 100 g)',
+    'nutri-extra-label': 'Good to know', 'no-allergen': 'None',
+    'kcal': 'kcal', 'prot': 'Protein', 'fat': 'Fat', 'carbs': 'Carbs',
+    'co-name-ph': 'Name *', 'co-email-ph': 'Email *', 'co-phone-ph': 'Phone *',
+    'co-address-ph': 'Delivery address *', 'co-instr-ph': 'Flat No., door code...',
+    'co-time-ph': 'Preferred delivery time', 'co-comment-ph': 'Comment to order',
+    'required-msg': 'Please fill in all required fields (*)',
+    'connecting': 'Connecting...', 'error-text': 'Error: '
   },
   ru: {
-    'nav-menu':'Меню','nav-about':'О нас','nav-delivery':'Доставка и оплата','cart-label':'Корзина',
-    'hero-badge':'✦ Скоро открытие','hero-title-1':'Вкус России','hero-title-2':'у вас дома',
-    'hero-sub':'Живёте в Лондоне и скучаете по вкусной домашней русской кухне? Отличные новости для жителей Battersea, Nine Elms и Vauxhall. Russian Corner готовит каждый день. Доставляют русскоговорящие курьеры. Все блюда без лука.',
-    'hero-btn-text':'Смотреть меню →','hc1-name':'Оливье','hc2-name':'Пельмени','hc3-name':'Блины',
-    'menu-title':'Меню','menu-sub':'Свежее, настоящее, домашнее · Все блюда без лука',
-    'about-title':'О компании','about-story-title':'Наша история',
-    'about-story-text':'Russian Corner — это домашняя русская кухня в самом сердце Лондона. Мы готовим каждый день из свежих ингредиентов, без консервантов и без лука. Наша миссия — подарить жителям Battersea, Nine Elms и Vauxhall тот самый вкус, который помнишь с детства.',
-    'about-details-title':'Реквизиты','abl-name':'Юридическое название','abl-trading':'Торговое название','abl-type':'Тип','abl-no':'Рег. номер','abl-addr':'Адрес','abl-inc':'Дата регистрации',
-    'about-contact-title':'Контакт','about-contact-text':'Есть вопросы? Мы отвечаем в течение 24 часов.',
-    'about-returns-title':'Возвраты','about-returns-text':'Поскольку все наши блюда являются скоропортящимися продуктами питания, мы не принимаем возвраты после доставки. Если заказ пришёл в ненадлежащем состоянии — напишите нам в течение 2 часов с фото.',
-    'about-privacy-text':'Hype Frame Ltd («Russian Corner») обрабатывает ваши персональные данные исключительно для обработки и доставки заказов. Платёжные данные обрабатываются Stripe и не хранятся нами. Вы вправе запросить доступ или удаление данных: info@russiancorner.co.uk. Политика соответствует UK GDPR и Data Protection Act 2018.',
-    'del-title':'Доставка и оплата','del-fee-title':'Стоимость','del-courier-label':'Доставка курьером','del-min-label':'Минимальный заказ',
-    'del-zones-title':'Зоны доставки','del-deliveroo':'Deliveroo — скоро','del-deliveroo-sub':'Расширение географии','del-soon-badge':'Скоро',
-    'del-couriers-title':'Наши курьеры','del-couriers-text':'Все блюда доставляют русскоговорящие курьеры. Доставка в охлаждённом виде, в термосумках. Время доставки согласовывается при оформлении заказа.',
-    'del-payment-title':'Оплата','del-payment-text':'Принимаем все банковские карты через Stripe. Ваши платёжные данные защищены и не хранятся на наших серверах.',
-    'del-q-title':'Вопросы?',
-    'co-modal-title':'Оформление заказа','co-details-title':'Контактные данные','co-delivery-title':'Доставка',
-    'co-delivery-note':'Доставка £3.99 · Battersea, Nine Elms, Vauxhall','co-submit-text':'Перейти к оплате →','co-secure-text':'Безопасная оплата через Stripe',
-    'cart-drawer-title':'Корзина','cart-total-label':'Итого','cart-pay-btn':'Оплатить →','cart-secure-note':'Безопасная оплата',
-    'variantLabel':'Размер / Количество','sauceLabel':'Соус (+£0.99)','containerTitle':'📦 Привезти в контейнере +£4.99','containerSub':'Контейнер можно использовать повторно',
-    'infoLabel':'Состав','addedText':'Добавлено:','cartEmpty':'Корзина пуста',
-    'ingrLabel':'Состав','allerLabel':'Аллергены','nutriLabel':'Пищевая ценность (на 100 г)','extraLabel':'Важно знать',
-    'noAllergen':'Нет','connectingText':'Подключение...','errorText':'Ошибка: ','requiredText':'Пожалуйста, заполните обязательные поля (*)',
-    'tagHit':'Хит','tagNew':'Новинка'
+    'nav-menu-btn': 'Меню', 'nav-about-btn': 'О нас', 'nav-delivery-btn': 'Доставка и оплата',
+    'cart-label': 'Корзина', 'cart-drawer-title': 'Корзина', 'cart-total-label': 'Итого',
+    'pay-btn-text': 'Оплатить →', 'secure-label': 'Безопасная оплата',
+    'hero-badge-text': '✦ СКОРО ОТКРЫТИЕ', 'hero-title-1': 'Вкус России', 'hero-title-2': 'у вас дома',
+    'hero-sub': 'Живёте в Лондоне и скучаете по домашней русской еде? Отличные новости для жителей Battersea, Nine Elms и Vauxhall. Russian Corner готовит каждый день. Доставляют русскоговорящие курьеры. Все блюда без лука.',
+    'hero-btn-text': 'Смотреть меню →',
+    'hero-card-1-name': 'Салат Оливье', 'hero-card-2-name': 'Пельмени', 'hero-card-3-name': 'Блины',
+    'menu-title': 'Меню', 'menu-sub': 'Свежее, настоящее, домашнее · Все блюда без лука',
+    'about-title': 'О нас', 'about-story-label': 'Наша история',
+    'about-story': 'Russian Corner — это домашняя русская кухня в сердце Лондона. Мы готовим каждый день из свежих ингредиентов, без консервантов и без лука. Наша миссия — подарить жителям Battersea, Nine Elms и Vauxhall тот вкус, который помнишь с детства.',
+    'about-details-label': 'Реквизиты', 'about-reg-name-label': 'Юридическое название',
+    'about-trading-label': 'Торговое название', 'about-type-label': 'Тип', 'about-regno-label': 'Рег. номер',
+    'about-addr-label': 'Адрес', 'about-inc-label': 'Дата регистрации',
+    'about-contact-label': 'Контакт', 'about-contact-text': 'Есть вопросы? Мы отвечаем в течение 24 часов.',
+    'about-returns-label': 'Возвраты',
+    'about-returns': 'Поскольку все наши блюда являются скоропортящимися продуктами, мы не принимаем возвраты после доставки. Если заказ пришёл в ненадлежащем состоянии — напишите нам в течение 2 часов с фото.',
+    'about-privacy': 'Hype Frame Ltd («Russian Corner») обрабатывает ваши персональные данные исключительно для обработки и доставки заказов. Платёжные данные обрабатываются Stripe и не хранятся нами. Вы вправе запросить доступ или удаление данных: info@russiancorner.co.uk. Политика соответствует UK GDPR и Data Protection Act 2018.',
+    'delivery-title': 'Доставка и оплата', 'delivery-fee-label': 'Стоимость',
+    'delivery-courier-label': 'Доставка курьером', 'delivery-min-label': 'Минимальный заказ',
+    'delivery-zones-label': 'Зоны доставки', 'deliveroo-text': 'Deliveroo — скоро',
+    'deliveroo-sub': 'Расширение географии', 'soon-badge': 'Скоро',
+    'delivery-couriers-label': 'Наши курьеры',
+    'delivery-couriers-text': 'Все блюда доставляют русскоговорящие курьеры. Доставка в охлаждённом виде, в термосумках. Время доставки согласовывается при оформлении заказа.',
+    'delivery-payment-label': 'Оплата',
+    'delivery-payment-text': 'Принимаем все банковские карты через Stripe. Ваши платёжные данные защищены и не хранятся на наших серверах.',
+    'delivery-q-label': 'Вопросы?',
+    'co-title': 'Оформление заказа', 'co-details-label': 'Контактные данные', 'co-delivery-label': 'Доставка',
+    'co-delivery-note': 'Доставка £3.99 · Battersea, Nine Elms, Vauxhall',
+    'co-submit-text': 'Перейти к оплате →', 'co-secure-text': 'Безопасная оплата через Stripe',
+    'cart-empty': 'Корзина пуста', 'added-text': '✓ Добавлено:',
+    'variant-label': 'Размер / Количество', 'sauce-label': 'Соус (+£0.99)',
+    'container-title': '📦 Привезти в контейнере +£4.99', 'container-sub': 'Контейнер можно использовать повторно',
+    'info-label': 'Состав', 'add-label': 'Добавить',
+    'nutri-ingr': 'Состав', 'nutri-aller': 'Аллергены', 'nutri-kbju': 'Пищевая ценность (на 100 г)',
+    'nutri-extra-label': 'Важно знать', 'no-allergen': 'Нет',
+    'kcal': 'Ккал', 'prot': 'Белки', 'fat': 'Жиры', 'carbs': 'Углев.',
+    'co-name-ph': 'Имя *', 'co-email-ph': 'Email *', 'co-phone-ph': 'Телефон *',
+    'co-address-ph': 'Адрес доставки *', 'co-instr-ph': 'Квартира, домофон...',
+    'co-time-ph': 'Желаемое время доставки', 'co-comment-ph': 'Комментарий к заказу',
+    'required-msg': 'Пожалуйста, заполните обязательные поля (*)',
+    'connecting': 'Подключение...', 'error-text': 'Ошибка: '
   }
 };
 
-function t(key){ return T[lang][key] || T['en'][key] || key; }
+function t(key) { return (TR[lang] && TR[lang][key]) || (TR.en[key]) || key; }
 
 function setLang(l) {
   lang = l;
   document.querySelectorAll('.lang-btn').forEach(function(b){ b.classList.toggle('active', b.textContent.toLowerCase() === l); });
-  Object.keys(T.en).forEach(function(key){
-    var el = document.getElementById(key);
-    if (el && el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA') el.textContent = t(key);
-  });
-  document.querySelectorAll('.nav-link')[0].textContent = t('nav-menu');
-  document.querySelectorAll('.nav-link')[1].textContent = t('nav-about');
-  document.querySelectorAll('.nav-link')[2].textContent = t('nav-delivery');
+  var ids = ['nav-menu-btn','nav-about-btn','nav-delivery-btn','cart-label','cart-drawer-title','cart-total-label','pay-btn-text','secure-label','hero-badge-text','hero-title-1','hero-title-2','hero-sub','hero-btn-text','hero-card-1-name','hero-card-2-name','hero-card-3-name','menu-title','menu-sub','about-title','about-story-label','about-story','about-details-label','about-reg-name-label','about-trading-label','about-type-label','about-regno-label','about-addr-label','about-inc-label','about-contact-label','about-contact-text','about-returns-label','about-returns','about-privacy','delivery-title','delivery-fee-label','delivery-courier-label','delivery-min-label','delivery-zones-label','deliveroo-text','deliveroo-sub','soon-badge','delivery-couriers-label','delivery-couriers-text','delivery-payment-label','delivery-payment-text','delivery-q-label','co-title','co-details-label','co-delivery-label','co-delivery-note','co-submit-text','co-secure-text'];
+  ids.forEach(function(id){ var el = document.getElementById(id); if(el) el.textContent = t(id); });
+  document.getElementById('co-name').placeholder = t('co-name-ph');
+  document.getElementById('co-email').placeholder = t('co-email-ph');
+  document.getElementById('co-phone').placeholder = t('co-phone-ph');
+  document.getElementById('co-address').placeholder = t('co-address-ph');
+  document.getElementById('co-instructions').placeholder = t('co-instr-ph');
+  document.getElementById('co-time').placeholder = t('co-time-ph');
+  document.getElementById('co-comment').placeholder = t('co-comment-ph');
   localStorage.setItem('rc-lang', l);
   renderProducts();
   renderCartItems();
 }
 
 var products = [
-  {id:1,img:'/images/olivier.jpg',nameEn:'Olivier Salad',nameRu:'Салат Оливье',descEn:'Classic recipe with sausage, potato, peas and mayo. No onion.',descRu:'Классический рецепт с варёной колбасой, картошкой, горошком и майонезом. Без лука.',tag:'hit',variants:[{en:'200 g',ru:'200 г',price:13.99},{en:'500 g',ru:'500 г',price:24.99},{en:'1 kg',ru:'1 кг',price:43.99}],container:true,selectedVariant:0,containerChecked:false,sauces:null,selectedSauce:null,
-    nutrition:{en:{ingr:'Potato, eggs, cooked sausage, carrot, canned peas, pickled cucumber, mayonnaise. No onion.',allergens:'Eggs, mustard (in mayonnaise)',kbju:{kcal:180,prot:6,fat:14,carb:10},extra:''},
-    ru:{ingr:'Картофель, яйца куриные, колбаса варёная, морковь, горошек консервированный, огурец маринованный, майонез. Без лука.',allergens:'Яйца, горчица (в майонезе)',kbju:{kcal:180,prot:6,fat:14,carb:10},extra:''}}},
-  {id:2,img:'/images/crab.jpg',nameEn:'Crab Salad',nameRu:'Крабовый салат',descEn:'With crab sticks, corn, egg and mayo. No onion.',descRu:'С крабовыми палочками, кукурузой, яйцом и майонезом. Без лука.',tag:null,variants:[{en:'200 g',ru:'200 г',price:13.99},{en:'500 g',ru:'500 г',price:24.99},{en:'1 kg',ru:'1 кг',price:43.99}],container:true,selectedVariant:0,containerChecked:false,sauces:null,selectedSauce:null,
-    nutrition:{en:{ingr:'Crab sticks (surimi), canned corn, eggs, mayonnaise. No onion.',allergens:'Fish (surimi), eggs, mustard (in mayonnaise), gluten',kbju:{kcal:155,prot:7,fat:10,carb:9},extra:''},
-    ru:{ingr:'Крабовые палочки (сурими), кукуруза консервированная, яйца куриные, майонез. Без лука.',allergens:'Рыба (сурими), яйца, горчица (в майонезе), глютен',kbju:{kcal:155,prot:7,fat:10,carb:9},extra:''}}},
-  {id:3,img:'/images/blini.jpg',nameEn:'Blini',nameRu:'Блины',descEn:'Thin homemade pancakes. Served with your choice of sauce.',descRu:'Тонкие домашние блины. Подаются с соусом на выбор.',tag:'new',variants:[{en:'2 pcs',ru:'2 шт.',price:9.99},{en:'4 pcs',ru:'4 шт.',price:18.99},{en:'8 pcs',ru:'8 шт.',price:32.99}],container:true,selectedVariant:0,containerChecked:false,
-    sauces:[{en:'Sour cream',ru:'Со сметаной',price:0.99},{en:'Condensed milk',ru:'Со сгущёнкой',price:0.99},{en:'Apricot jam',ru:'С абрикосовым вареньем',price:0.99}],selectedSauce:null,
-    nutrition:{en:{ingr:'Wheat flour, milk, eggs, butter, sugar, salt.',allergens:'Gluten (wheat), eggs, milk',kbju:{kcal:215,prot:6,fat:9,carb:28},extra:''},
-    ru:{ingr:'Мука пшеничная, молоко, яйца куриные, масло сливочное, сахар, соль.',allergens:'Глютен (пшеница), яйца, молоко',kbju:{kcal:215,prot:6,fat:9,carb:28},extra:''}}},
-  {id:4,img:'/images/dumplings.jpg',nameEn:'Homemade Pelmeni',nameRu:'Домашние пельмени',descEn:'Pork & beef filling, handmade daily. Sold frozen — cooking instructions included.',descRu:'Свинина+говядина, лепим вручную каждый день. Продаются замороженными — инструкция в комплекте.',tag:'hit',variants:[{en:'500 g',ru:'500 г',price:29.99},{en:'1 kg',ru:'1 кг',price:54.99},{en:'2 kg',ru:'2 кг',price:99.99}],container:false,selectedVariant:0,containerChecked:false,sauces:null,selectedSauce:null,
-    nutrition:{en:{ingr:'Dough (wheat flour, water, egg, salt), filling (50% pork, 50% beef), black pepper, salt.',allergens:'Gluten (wheat), eggs',kbju:{kcal:245,prot:12,fat:11,carb:24},extra:"True pelmeni lovers know they must be served piping hot! That's why we sell ours frozen — preserving all the flavour and freshness until the moment you cook them. Every order includes detailed instructions on how to cook them perfectly."},
-    ru:{ingr:'Тесто (мука пшеничная, вода, яйцо, соль), фарш (свинина 50%, говядина 50%), перец чёрный молотый, соль.',allergens:'Глютен (пшеница), яйца',kbju:{kcal:245,prot:12,fat:11,carb:24},extra:'Настоящие ценители пельменей знают: они должны быть с пылу с жару! Именно поэтому мы продаём наши пельмени замороженными — так они сохраняют весь вкус и свежесть до момента приготовления. В каждый заказ мы вкладываем подробную инструкцию, как сварить их по-настоящему вкусно.'}}},
-  {id:5,img:'/images/sharlotka.jpg',nameEn:'Apple Charlotte',nameRu:'Яблочная шарлотка',descEn:'Light homemade apple cake. One slice or the whole cake.',descRu:'Нежный домашний яблочный пирог. Один кусочек или целый пирог.',tag:null,variants:[{en:'1 slice',ru:'1 кусочек',price:9.99},{en:'Whole cake (8 slices)',ru:'Целый пирог (8 кусочков)',price:69.99}],container:false,selectedVariant:0,containerChecked:false,sauces:null,selectedSauce:null,
-    nutrition:{en:{ingr:'Apples, eggs, sugar, wheat flour, butter, vanilla, baking powder, cinnamon.',allergens:'Gluten (wheat), eggs, milk (butter)',kbju:{kcal:210,prot:4,fat:7,carb:33},extra:''},
-    ru:{ingr:'Яблоки, яйца куриные, сахар, мука пшеничная, масло сливочное, ваниль, разрыхлитель, корица.',allergens:'Глютен (пшеница), яйца, молоко (сливочное масло)',kbju:{kcal:210,prot:4,fat:7,carb:33},extra:''}}}
+  {
+    id:1, img:'/images/olivier.jpg',
+    nameRu:'Салат Оливье', nameEn:'Olivier Salad',
+    descRu:'Классический рецепт с варёной колбасой, картошкой, горошком и майонезом. Без лука.',
+    descEn:'Classic recipe with sausage, potato, peas and mayo. No onion.',
+    tag:'hit', tagRu:'Хит', tagEn:'Hit',
+    variants:[{ru:'200 г',en:'200 g',price:13.99},{ru:'500 г',en:'500 g',price:24.99},{ru:'1 кг',en:'1 kg',price:43.99}],
+    container:true, selectedVariant:0, containerChecked:false,
+    nutrition:{
+      ru:{ingr:'Картофель, яйца куриные, колбаса варёная, морковь, горошек консервированный, огурец маринованный, майонез. Без лука.',allergens:'Яйца, горчица (в майонезе)',kbju:{kcal:180,prot:6,fat:14,carb:10}},
+      en:{ingr:'Potato, eggs, cooked sausage, carrot, canned peas, pickled cucumber, mayonnaise. No onion.',allergens:'Eggs, mustard (in mayonnaise)',kbju:{kcal:180,prot:6,fat:14,carb:10}}
+    }
+  },
+  {
+    id:2, img:'/images/crab.jpg',
+    nameRu:'Крабовый салат', nameEn:'Crab Salad',
+    descRu:'С крабовыми палочками, кукурузой, яйцом и майонезом. Без лука.',
+    descEn:'With crab sticks, corn, egg and mayo. No onion.',
+    tag:null,
+    variants:[{ru:'200 г',en:'200 g',price:13.99},{ru:'500 г',en:'500 g',price:24.99},{ru:'1 кг',en:'1 kg',price:43.99}],
+    container:true, selectedVariant:0, containerChecked:false,
+    nutrition:{
+      ru:{ingr:'Крабовые палочки (сурими), кукуруза консервированная, яйца куриные, майонез. Без лука.',allergens:'Рыба (сурими), яйца, горчица (в майонезе), глютен',kbju:{kcal:155,prot:7,fat:10,carb:9}},
+      en:{ingr:'Crab sticks (surimi), canned corn, eggs, mayonnaise. No onion.',allergens:'Fish (surimi), eggs, mustard (in mayonnaise), gluten',kbju:{kcal:155,prot:7,fat:10,carb:9}}
+    }
+  },
+  {
+    id:3, img:'/images/blini.jpg',
+    nameRu:'Блины', nameEn:'Blini',
+    descRu:'Тонкие домашние блины. Подаются с соусом на выбор.',
+    descEn:'Thin homemade pancakes. Served with your choice of sauce.',
+    tag:'new', tagRu:'Новинка', tagEn:'New',
+    variants:[{ru:'2 шт.',en:'2 pcs',price:9.99},{ru:'4 шт.',en:'4 pcs',price:18.99},{ru:'8 шт.',en:'8 pcs',price:32.99}],
+    container:true, selectedVariant:0, containerChecked:false,
+    sauces:[{ru:'Со сметаной',en:'Sour cream',price:0.99},{ru:'Со сгущёнкой',en:'Condensed milk',price:0.99},{ru:'С абрикосовым вареньем',en:'Apricot jam',price:0.99}],
+    selectedSauce:null,
+    nutrition:{
+      ru:{ingr:'Мука пшеничная, молоко, яйца куриные, масло сливочное, сахар, соль.',allergens:'Глютен (пшеница), яйца, молоко',kbju:{kcal:215,prot:6,fat:9,carb:28}},
+      en:{ingr:'Wheat flour, milk, eggs, butter, sugar, salt.',allergens:'Gluten (wheat), eggs, milk',kbju:{kcal:215,prot:6,fat:9,carb:28}}
+    }
+  },
+  {
+    id:4, img:'/images/dumplings.jpg',
+    nameRu:'Домашние пельмени', nameEn:'Homemade Pelmeni',
+    descRu:'Свинина+говядина, лепим вручную каждый день. Продаются замороженными — инструкция в комплекте.',
+    descEn:'Pork & beef filling, handmade daily. Sold frozen — cooking instructions included.',
+    tag:'hit', tagRu:'Хит', tagEn:'Hit',
+    variants:[{ru:'500 г',en:'500 g',price:29.99},{ru:'1 кг',en:'1 kg',price:54.99},{ru:'2 кг',en:'2 kg',price:99.99}],
+    container:false, selectedVariant:0, containerChecked:false,
+    nutrition:{
+      ru:{ingr:'Тесто (мука пшеничная, вода, яйцо, соль), фарш (свинина 50%, говядина 50%), перец чёрный молотый, соль.',allergens:'Глютен (пшеница), яйца',kbju:{kcal:245,prot:12,fat:11,carb:24},
+        extra:'Настоящие ценители пельменей знают: они должны быть с пылу с жару! Именно поэтому мы продаём наши пельмени замороженными — так они сохраняют весь вкус и свежесть до момента приготовления. В каждый заказ мы вкладываем подробную инструкцию, как сварить их по-настоящему вкусно.'},
+      en:{ingr:'Dough (wheat flour, water, egg, salt), filling (50% pork, 50% beef), black pepper, salt.',allergens:'Gluten (wheat), eggs',kbju:{kcal:245,prot:12,fat:11,carb:24},
+        extra:"True pelmeni lovers know they must be served piping hot! That's why we sell ours frozen — preserving all the flavour and freshness until the moment you cook them. Every order includes detailed instructions on how to cook them perfectly."}
+    }
+  },
+  {
+    id:5, img:'/images/sharlotka.jpg',
+    nameRu:'Яблочная шарлотка', nameEn:'Apple Charlotte',
+    descRu:'Нежный домашний яблочный пирог. Один кусочек или целый пирог.',
+    descEn:'Light homemade apple cake. One slice or the whole cake.',
+    tag:null,
+    variants:[{ru:'1 кусочек',en:'1 slice',price:9.99},{ru:'Целый пирог (8 кусочков)',en:'Whole cake (8 slices)',price:69.99}],
+    container:false, selectedVariant:0, containerChecked:false,
+    nutrition:{
+      ru:{ingr:'Яблоки, яйца куриные, сахар, мука пшеничная, масло сливочное, ваниль, разрыхлитель, корица.',allergens:'Глютен (пшеница), яйца, молоко (сливочное масло)',kbju:{kcal:210,prot:4,fat:7,carb:33}},
+      en:{ingr:'Apples, eggs, sugar, wheat flour, butter, vanilla, baking powder, cinnamon.',allergens:'Gluten (wheat), eggs, milk (butter)',kbju:{kcal:210,prot:4,fat:7,carb:33}}
+    }
+  }
 ];
 
 function renderProducts() {
@@ -467,7 +555,10 @@ function renderProducts() {
     var desc = lang === 'ru' ? p.descRu : p.descEn;
     var selV = p.variants[p.selectedVariant];
     var tagHTML = '';
-    if (p.tag) { tagHTML = '<div class="product-tag ' + p.tag + '">' + t('tag' + p.tag.charAt(0).toUpperCase() + p.tag.slice(1)) + '</div>'; }
+    if (p.tag) {
+      var tagText = lang === 'ru' ? p.tagRu : p.tagEn;
+      tagHTML = '<div class="product-tag ' + p.tag + '">' + tagText + '</div>';
+    }
     var varBtns = p.variants.map(function(v, i) {
       var vl = lang === 'ru' ? v.ru : v.en;
       return '<button class="variant-btn' + (i === p.selectedVariant ? ' selected' : '') + '" onclick="selectVariant(' + p.id + ',' + i + ')">' + vl + ' — £' + v.price.toFixed(2) + '</button>';
@@ -478,18 +569,20 @@ function renderProducts() {
         var sl = lang === 'ru' ? s.ru : s.en;
         return '<button class="sauce-btn' + (p.selectedSauce === i ? ' selected' : '') + '" onclick="selectSauce(' + p.id + ',' + i + ')">' + sl + '</button>';
       }).join('');
-      sauceHTML = '<div class="sauce-section"><div class="sauce-label">' + t('sauceLabel') + '</div><div class="sauce-options">' + sauceBtns + '</div></div>';
+      sauceHTML = '<div class="sauce-section"><div class="sauce-label">' + t('sauce-label') + '</div><div class="sauce-options">' + sauceBtns + '</div></div>';
     }
     var containerHTML = '';
     if (p.container) {
-      containerHTML = '<div class="container-option' + (p.containerChecked ? ' checked' : '') + '" onclick="toggleContainer(' + p.id + ')"><div class="eco-check"><span class="eco-check-mark">✓</span></div><div class="eco-text"><div class="eco-title">' + t('containerTitle') + '</div><div class="eco-sub">' + t('containerSub') + '</div></div></div>';
+      containerHTML = '<div class="container-option' + (p.containerChecked ? ' checked' : '') + '" onclick="toggleContainer(' + p.id + ')"><div class="eco-check"><span class="eco-check-mark">✓</span></div><div class="eco-text"><div class="eco-title">' + t('container-title') + '</div><div class="eco-sub">' + t('container-sub') + '</div></div></div>';
     }
-    var total = selV.price + (p.containerChecked ? 4.99 : 0) + (p.sauces && p.selectedSauce !== null ? p.sauces[p.selectedSauce].price : 0);
-    return '<div class="product-card"><div class="product-img-wrap"><img src="' + p.img + '" alt="' + name + '" onerror="this.parentNode.innerHTML='<div class=\"product-img-placeholder\">🍽</div>'">' + tagHTML + '</div><div class="product-body"><div class="product-name">' + name + '</div><div class="product-desc">' + desc + '</div><div class="variant-label">' + t('variantLabel') + '</div><div class="variants">' + varBtns + '</div>' + sauceHTML + containerHTML + '<div class="product-footer"><div class="product-price">£' + total.toFixed(2) + '</div><div class="product-actions"><button class="info-btn" onclick="openNutrition(' + p.id + ')">ℹ</button><button class="add-btn" id="btn-' + p.id + '" onclick="addToCart(' + p.id + ')">+</button></div></div></div></div>';
+    var total = selV.price;
+    if (p.containerChecked) total += 4.99;
+    if (p.sauces && p.selectedSauce !== null) total += p.sauces[p.selectedSauce].price;
+    return '<div class="product-card"><div class="product-img-wrap"><img src="' + p.img + '" alt="' + name + '" onerror="this.parentNode.innerHTML='<div class=\"product-img-placeholder\">🍽</div>'">' + tagHTML + '</div><div class="product-body"><div class="product-name">' + name + '</div><div class="product-desc">' + desc + '</div><div class="variant-label">' + t('variant-label') + '</div><div class="variants">' + varBtns + '</div>' + sauceHTML + containerHTML + '<div class="product-footer"><div class="product-price">£' + total.toFixed(2) + '</div><div class="product-actions"><button class="info-btn" onclick="openNutrition(' + p.id + ')">ℹ</button><button class="add-btn" id="btn-' + p.id + '" onclick="addToCart(' + p.id + ')">+</button></div></div></div></div>';
   }).join('');
 }
 
-function selectVariant(id, i) { var p = products.find(function(x){return x.id===id;}); p.selectedVariant = i; renderProducts(); }
+function selectVariant(id, i) { products.find(function(p){return p.id===id;}).selectedVariant = i; renderProducts(); }
 function toggleContainer(id) { var p = products.find(function(x){return x.id===id;}); p.containerChecked = !p.containerChecked; renderProducts(); }
 function selectSauce(id, i) { var p = products.find(function(x){return x.id===id;}); p.selectedSauce = p.selectedSauce === i ? null : i; renderProducts(); }
 
@@ -497,38 +590,41 @@ function openNutrition(id) {
   var p = products.find(function(x){return x.id===id;});
   var n = p.nutrition[lang];
   var name = lang === 'ru' ? p.nameRu : p.nameEn;
+  var extraHTML = '';
+  if (n.extra) {
+    extraHTML = '<div class="modal-section"><div class="modal-section-title">' + t('nutri-extra-label') + '</div><p class="modal-text">' + n.extra + '</p></div>';
+  }
+  var allerList = (n.allergens === 'Нет' || n.allergens === 'None')
+    ? '<span class="ingr-tag">' + t('no-allergen') + '</span>'
+    : n.allergens.split(',').map(function(a){return '<span class="ingr-tag allergen-tag">'+a.trim()+'</span>';}).join('');
   document.getElementById('nutri-title').textContent = name;
-  var extraHTML = n.extra ? '<div class="modal-section"><div class="modal-section-title">' + t('extraLabel') + '</div><p class="modal-text">' + n.extra + '</p></div>' : '';
-  var noAllergen = t('noAllergen');
-  var allerList = (n.allergens === 'None' || n.allergens === 'Нет') ? '<span class="ingr-tag">' + noAllergen + '</span>' : n.allergens.split(',').map(function(a){return '<span class="ingr-tag allergen-tag">' + a.trim() + '</span>';}).join('');
   document.getElementById('nutri-content').innerHTML = extraHTML +
-    '<div class="modal-section"><div class="modal-section-title">' + t('ingrLabel') + '</div><div class="ingr-list">' + n.ingr.split(',').map(function(i){return '<span class="ingr-tag">' + i.trim() + '</span>';}).join('') + '</div></div>' +
-    '<div class="modal-section"><div class="modal-section-title">' + t('allerLabel') + '</div><div class="ingr-list">' + allerList + '</div></div>' +
-    '<div class="modal-section"><div class="modal-section-title">' + t('nutriLabel') + '</div><div class="kbju-grid"><div class="kbju-card"><div class="kbju-val">' + n.kbju.kcal + '</div><div class="kbju-label">kcal</div></div><div class="kbju-card"><div class="kbju-val">' + n.kbju.prot + 'g</div><div class="kbju-label">Protein</div></div><div class="kbju-card"><div class="kbju-val">' + n.kbju.fat + 'g</div><div class="kbju-label">Fat</div></div><div class="kbju-card"><div class="kbju-val">' + n.kbju.carb + 'g</div><div class="kbju-label">Carbs</div></div></div></div>';
+    '<div class="modal-section"><div class="modal-section-title">' + t('nutri-ingr') + '</div><div class="ingr-list">' + n.ingr.split(',').map(function(i){return '<span class="ingr-tag">'+i.trim()+'</span>';}).join('') + '</div></div>' +
+    '<div class="modal-section"><div class="modal-section-title">' + t('nutri-aller') + '</div><div class="ingr-list">' + allerList + '</div></div>' +
+    '<div class="modal-section"><div class="modal-section-title">' + t('nutri-kbju') + '</div><div class="kbju-grid"><div class="kbju-card"><div class="kbju-val">' + n.kbju.kcal + '</div><div class="kbju-label">' + t('kcal') + '</div></div><div class="kbju-card"><div class="kbju-val">' + n.kbju.prot + 'g</div><div class="kbju-label">' + t('prot') + '</div></div><div class="kbju-card"><div class="kbju-val">' + n.kbju.fat + 'g</div><div class="kbju-label">' + t('fat') + '</div></div><div class="kbju-card"><div class="kbju-val">' + n.kbju.carb + 'g</div><div class="kbju-label">' + t('carbs') + '</div></div></div></div>';
   openModal('nutrition');
 }
 
 function openModal(id) { document.getElementById('modal-' + id).classList.add('open'); document.body.style.overflow = 'hidden'; }
 function closeModal(id) { document.getElementById('modal-' + id).classList.remove('open'); document.body.style.overflow = ''; }
 
+var cart = [];
 function addToCart(id) {
   var p = products.find(function(x){return x.id===id;});
   var v = p.variants[p.selectedVariant];
   var vl = lang === 'ru' ? v.ru : v.en;
-  var itemPrice = v.price + (p.containerChecked ? 4.99 : 0) + (p.sauces && p.selectedSauce !== null ? p.sauces[p.selectedSauce].price : 0);
+  var itemPrice = v.price;
   var metaParts = [vl];
-  if (p.containerChecked) metaParts.push(lang === 'ru' ? '+контейнер' : '+container');
-  if (p.sauces && p.selectedSauce !== null) metaParts.push(lang === 'ru' ? p.sauces[p.selectedSauce].ru : p.sauces[p.selectedSauce].en);
+  if (p.containerChecked) { itemPrice += 4.99; metaParts.push(lang === 'ru' ? '+контейнер' : '+container'); }
+  if (p.sauces && p.selectedSauce !== null) { var s = p.sauces[p.selectedSauce]; itemPrice += s.price; metaParts.push(lang === 'ru' ? s.ru : s.en); }
   var key = id + '-' + p.selectedVariant + '-' + p.containerChecked + '-' + p.selectedSauce;
   var ex = cart.find(function(i){return i.key===key;});
-  if (ex) { ex.qty++; }
-  else { cart.push({key:key,id:id,qty:1,name:lang==='ru'?p.nameRu:p.nameEn,img:p.img,meta:metaParts.join(' · '),price:itemPrice}); }
+  if (ex) { ex.qty++; } else { cart.push({key:key, id:id, qty:1, name:lang==='ru'?p.nameRu:p.nameEn, img:p.img, meta:metaParts.join(' · '), price:itemPrice}); }
   updateCart();
-  showToast(t('addedText') + ' ' + (lang==='ru'?p.nameRu:p.nameEn) + ' (' + vl + ')');
+  showToast(t('added-text') + ' ' + (lang==='ru'?p.nameRu:p.nameEn));
   var btn = document.getElementById('btn-' + id);
   if (btn) { btn.classList.add('added'); btn.textContent = '✓'; setTimeout(function(){ btn.classList.remove('added'); btn.textContent = '+'; }, 1500); }
 }
-
 function updateCart() {
   var total = cart.reduce(function(s,i){return s+i.price*i.qty;},0);
   var count = cart.reduce(function(s,i){return s+i.qty;},0);
@@ -537,15 +633,13 @@ function updateCart() {
   document.getElementById('checkoutBtn').disabled = cart.length === 0;
   renderCartItems();
 }
-
 function renderCartItems() {
   var el = document.getElementById('cartItems');
-  if (!cart.length) { el.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🛒</div><div class="cart-empty-text">' + t('cartEmpty') + '</div></div>'; return; }
-  el.innerHTML = cart.map(function(item) {
+  if (!cart.length) { el.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🛒</div><div>' + t('cart-empty') + '</div></div>'; return; }
+  el.innerHTML = cart.map(function(item){
     return '<div class="cart-item"><img class="cart-item-img" src="' + item.img + '" alt="" onerror="this.style.display='none'"><div class="cart-item-info"><div class="cart-item-name">' + item.name + '</div><div class="cart-item-meta">' + item.meta + '</div><div class="cart-item-price">£' + (item.price*item.qty).toFixed(2) + '</div></div><div class="cart-qty"><button class="qty-btn" onclick="changeQty('' + item.key + '',-1)">−</button><div class="qty-num">' + item.qty + '</div><button class="qty-btn" onclick="changeQty('' + item.key + '',1)">+</button></div></div>';
   }).join('');
 }
-
 function changeQty(key, delta) {
   var item = cart.find(function(i){return i.key===key;});
   if (!item) return;
@@ -553,21 +647,9 @@ function changeQty(key, delta) {
   if (item.qty <= 0) cart = cart.filter(function(i){return i.key!==key;});
   updateCart();
 }
-
 function toggleCart() {
   document.getElementById('cartDrawer').classList.toggle('open');
   document.getElementById('cartOverlay').classList.toggle('open');
-}
-
-function scrollToProducts() { document.getElementById('products').scrollIntoView({behavior:'smooth'}); }
-
-var toastT;
-function showToast(msg) {
-  var el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(toastT);
-  toastT = setTimeout(function(){ el.classList.remove('show'); }, 2500);
 }
 
 var CHECKOUT_API_URL = 'https://YOUR-PROJECT.vercel.app/api/checkout';
@@ -583,14 +665,29 @@ function submitCheckout() {
   var instructions = document.getElementById('co-instructions').value.trim();
   var time = document.getElementById('co-time').value.trim();
   var comment = document.getElementById('co-comment').value.trim();
-  if (!name || !email || !phone || !address) { alert(t('requiredText')); return; }
+  if (!name || !email || !phone || !address) { alert(t('required-msg')); return; }
   var btn = document.getElementById('submit-checkout-btn');
-  btn.textContent = t('connectingText');
+  btn.textContent = t('connecting');
   btn.disabled = true;
-  fetch(CHECKOUT_API_URL, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({cart:cart,customerInfo:{name:name,email:email,phone:phone,address:address,instructions:instructions,time:time,comment:comment}})})
-    .then(function(r){return r.json();})
-    .then(function(data){ if (data.url) { localStorage.setItem('rc-lang',lang); window.location.href = data.url; } else { throw new Error(data.error||'Unknown error'); } })
-    .catch(function(err){ alert(t('errorText') + err.message); btn.textContent = t('co-submit-text'); btn.disabled = false; });
+  fetch(CHECKOUT_API_URL, {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({cart:cart, customerInfo:{name:name,email:email,phone:phone,address:address,instructions:instructions,time:time,comment:comment}})
+  })
+  .then(function(r){return r.json();})
+  .then(function(data){ if(data.url){localStorage.setItem('rc-lang',lang);window.location.href=data.url;}else{throw new Error(data.error||'Unknown error');} })
+  .catch(function(err){ alert(t('error-text') + err.message); btn.textContent = t('co-submit-text'); btn.disabled = false; });
+}
+
+function scrollToProducts() { document.getElementById('products').scrollIntoView({behavior:'smooth'}); }
+
+var toastT;
+function showToast(msg) {
+  var el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastT);
+  toastT = setTimeout(function(){ el.classList.remove('show'); }, 2500);
 }
 
 var savedLang = localStorage.getItem('rc-lang') || 'en';
