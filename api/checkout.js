@@ -33,12 +33,9 @@ module.exports = async function handler(req, res) {
         currency: 'gbp',
         product_data: {
           name: item.name,
-          description: [
-            item.variant,
-            item.eco ? '+ Reusable container' : null
-          ].filter(Boolean).join(' · '),
+          description: item.meta || '',
         },
-        unit_amount: Math.round(item.price * 100), // Stripe uses pence
+        unit_amount: Math.round((item.pr || item.price || 0) * 100), // Stripe uses pence
       },
       quantity: item.qty,
     }));
@@ -58,7 +55,7 @@ module.exports = async function handler(req, res) {
 
     // Build order summary for metadata (stored in Stripe, sent via webhook)
     const orderSummary = cart.map(item =>
-      `${item.qty}x ${item.name} (${item.variant})${item.eco ? ' +container' : ''} — £${(item.price * item.qty).toFixed(2)}`
+      `${item.qty}x ${item.name} (${item.meta || ''}) — £${((item.pr || item.price || 0) * item.qty).toFixed(2)}`
     ).join('\n');
 
     // Create Stripe Checkout session
