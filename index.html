@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Russian Corner</title>
+<link rel="icon" type="image/png" href="/images/favicon-light.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="/images/favicon-dark.png" media="(prefers-color-scheme: dark)">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Mulish:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#2d6cdf;--red:#d93a50;--gold:#c9a84c;--gb:rgba(255,255,255,.06);--gbd:rgba(255,255,255,.13);--tm:rgba(240,238,232,.55);--tx:#f0eee8}
+html{scroll-behavior:smooth}
+body{font-family:'Mulish',sans-serif;background:#080d18;color:var(--tx);overflow-x:hidden}
+.orbs{position:fixed;inset:0;z-index:0;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.35}
+.o1{width:600px;height:600px;background:radial-gradient(circle,#1a4fcc,transparent);top:-150px;left:-100px;animation:d1 18s ease-in-out infinite}
+.o2{width:500px;height:500px;background:radial-gradient(circle,#8b1a2b,transparent);bottom:-100px;right:-80px;animation:d2 22s ease-in-out infinite}
+@keyframes d1{0%,100%{transform:translate(0,0)}50%{transform:translate(60px,40px)}}
+@keyframes d2{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,-30px)}}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 40px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(8,13,24,.8);backdrop-filter:blur(30px);border-bottom:1px solid var(--gbd)}
+.nlogo img{height:34px;cursor:pointer}
+.nlinks{display:flex;gap:4px}
+.nl{padding:8px 16px;border-radius:50px;font-size:13px;font-weight:500;color:var(--tm);cursor:pointer;border:none;background:none;font-family:'Mulish',sans-serif;transition:all .2s}
+.nl:hover,.nl.act{color:var(--tx);background:var(--gb);border:1px solid var(--gbd)}
+.nl{border:1px solid transparent}
+.nright{display:flex;align-items:center;gap:10px}
+.langs{display:flex;background:var(--gb);border:1px solid var(--gbd);border-radius:50px;overflow:hidden}
+.lb{padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;border:none;background:none;color:var(--tm);font-family:'Mulish',sans-serif;transition:all .2s}
+.lb.act{background:rgba(255,255,255,.12);color:var(--tx)}
+.ncart{display:flex;align-items:center;gap:8px;cursor:pointer;padding:8px 18px;border-radius:50px;background:linear-gradient(135deg,rgba(45,108,223,.3),rgba(217,58,80,.3));border:1px solid rgba(255,255,255,.15);font-family:'Mulish',sans-serif;font-size:13px;font-weight:600;color:var(--tx);transition:all .2s}
+.ncart:hover{transform:scale(1.04)}
+.cbadge{background:var(--red);color:#fff;font-size:11px;font-weight:700;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.hero{position:relative;z-index:1;padding:150px 40px 80px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hbadge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:50px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);font-size:11px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px}
+.hdot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.htitle{font-family:'Unbounded',sans-serif;font-size:clamp(28px,3.5vw,48px);font-weight:700;line-height:1.15;letter-spacing:-1px;margin-bottom:20px}
+.hgrad{background:linear-gradient(135deg,#fff,#a0b8ff 40%,var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hsub{font-size:14px;color:var(--tm);line-height:1.8;margin-bottom:36px}
+.hbtn{display:inline-flex;align-items:center;padding:15px 34px;border-radius:50px;border:none;cursor:pointer;font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--blue),var(--red));box-shadow:0 8px 32px rgba(45,108,223,.3);transition:all .3s}
+.hbtn:hover{transform:translateY(-2px)}
+.hgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hcard{border-radius:20px;background:var(--gb);border:1px solid var(--gbd);overflow:hidden;cursor:pointer;transition:transform .3s}
+.hcard:hover{transform:translateY(-4px)}
+.hcard.wide{grid-column:1/-1;display:flex}
+.hcard.wide img{width:140px;height:120px;object-fit:cover;flex-shrink:0}
+.hcard.sm img{width:100%;height:100px;object-fit:cover}
+.hcbody{padding:14px 16px;display:flex;flex-direction:column;justify-content:center}
+.hcname{font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;margin-bottom:4px}
+.hcprice{font-size:14px;font-weight:700;color:var(--gold)}
+.sec{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:60px 40px}
+.sech{margin-bottom:40px}
+.sect{font-family:'Unbounded',sans-serif;font-size:26px;font-weight:700}
+.secs{color:var(--tm);font-size:13px;margin-top:6px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.pc{border-radius:24px;background:var(--gb);border:1px solid var(--gbd);overflow:hidden;display:flex;flex-direction:column;transition:all .35s}
+.pc:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.pimg{width:100%;height:200px;position:relative;overflow:hidden;flex-shrink:0}
+.pimg img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.pc:hover .pimg img{transform:scale(1.04)}
+.pph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:60px}
+.ptag{position:absolute;top:12px;right:12px;padding:4px 12px;border-radius:50px;font-size:10px;font-weight:700;backdrop-filter:blur(10px)}
+.ptag.hit{background:rgba(201,168,76,.25);color:var(--gold);border:1px solid rgba(201,168,76,.4)}
+.ptag.new{background:rgba(45,108,223,.25);color:#90b8ff;border:1px solid rgba(45,108,223,.4)}
+.pb{padding:18px;flex:1;display:flex;flex-direction:column}
+.pname{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;margin-bottom:6px;line-height:1.4}
+.pdesc{font-size:12px;color:var(--tm);line-height:1.65;margin-bottom:14px;flex:1}
+.vlabel{font-size:10px;color:var(--tm);font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:7px}
+.vars{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.vbtn{padding:5px 10px;border-radius:50px;border:1px solid var(--gbd);background:transparent;color:var(--tm);font-size:11px;font-weight:600;cursor:pointer;font-family:'Mulish',sans-serif;transition:all .2s}
+.vbtn:hover{color:var(--tx);border-color:rgba(255,255,255,.3)}
+.vbtn.sel{background:linear-gradient(135deg,rgba(45,108,223,.3),rgba(217,58,80,.3));border-color:rgba(45,108,223,.5);color:var(--tx)}
+.ssec{margin-bottom:10px}
+.slabel{font-size:10px;color:var(--tm);font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:7px}
+.sopts{display:flex;gap:5px;flex-wrap:wrap}
+.sbtn{padding:4px 10px;border-radius:50px;border:1px solid var(--gbd);background:transparent;color:var(--tm);font-size:11px;font-weight:600;cursor:pointer;font-family:'Mulish',sans-serif;transition:all .2s}
+.sbtn:hover{color:var(--tx);border-color:rgba(255,255,255,.3)}
+.sbtn.sel{background:linear-gradient(135deg,rgba(201,168,76,.2),rgba(201,168,76,.1));border-color:rgba(201,168,76,.5);color:var(--gold)}
+.copt{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:12px;background:rgba(46,160,67,.08);border:1px solid rgba(46,160,67,.2);margin-bottom:12px;cursor:pointer;user-select:none;transition:all .2s}
+.copt:hover{background:rgba(46,160,67,.13)}
+.copt.chk{background:rgba(46,160,67,.15);border-color:rgba(46,160,67,.4)}
+.cbox{width:17px;height:17px;border-radius:5px;border:1.5px solid rgba(46,160,67,.5);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.copt.chk .cbox{background:#2ea043;border-color:#2ea043}
+.ctick{font-size:10px;color:#fff;display:none}
+.copt.chk .ctick{display:block}
+.cetxt{flex:1}
+.ctitle{font-size:11px;font-weight:700;color:#4caf6e}
+.csub{font-size:10px;color:var(--tm);margin-top:1px}
+.pfoot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px}
+.pprice{font-size:20px;font-weight:700;color:var(--gold);font-family:'Unbounded',sans-serif}
+.pacts{display:flex;gap:6px;align-items:center}
+.ibtn{width:36px;height:36px;border-radius:50%;border:1px solid var(--gbd);background:var(--gb);color:var(--tm);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.ibtn:hover{color:var(--tx);border-color:rgba(255,255,255,.3)}
+.abtn{width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--blue),var(--red));color:#fff;font-size:22px;display:flex;align-items:center;justify-content:center;transition:all .25s;box-shadow:0 4px 16px rgba(45,108,223,.3)}
+.abtn:hover{transform:scale(1.12)}
+.abtn.added{background:linear-gradient(135deg,#1a7a4a,#2db865)}
+.ov{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:20px}
+.ov.open{opacity:1;pointer-events:all}
+.modal{background:rgba(12,18,35,.97);border:1px solid var(--gbd);border-radius:28px;width:100%;max-width:560px;max-height:88vh;overflow-y:auto;padding:36px;transform:scale(.94) translateY(20px);transition:transform .35s cubic-bezier(.23,1,.32,1)}
+.ov.open .modal{transform:scale(1) translateY(0)}
+.mh{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:26px}
+.mt{font-family:'Unbounded',sans-serif;font-size:18px;font-weight:700;line-height:1.3}
+.mx{width:34px;height:34px;border-radius:50%;background:var(--gb);border:1px solid var(--gbd);color:var(--tx);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.mx:hover{background:rgba(255,255,255,.1)}
+.ms{margin-bottom:22px}
+.msl{font-family:'Unbounded',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.mtxt{font-size:13px;color:var(--tm);line-height:1.78}
+.irow{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}
+.irow:last-child{border:none}
+.irl{color:var(--tm);font-size:12px}
+.irv{font-weight:600;text-align:right}
+.kg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+.kc{background:var(--gb);border:1px solid var(--gbd);border-radius:14px;padding:12px;text-align:center}
+.kv{font-family:'Unbounded',sans-serif;font-size:16px;font-weight:700;color:var(--gold);margin-bottom:3px}
+.kl{font-size:10px;color:var(--tm);text-transform:uppercase;letter-spacing:.5px}
+.itags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.itag{padding:4px 10px;border-radius:50px;background:var(--gb);border:1px solid var(--gbd);font-size:11px;color:var(--tm)}
+.atag{border-color:rgba(217,58,80,.4);background:rgba(217,58,80,.1);color:#f0a0a0}
+.emb{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:50px;background:linear-gradient(135deg,rgba(45,108,223,.3),rgba(217,58,80,.3));border:1px solid rgba(255,255,255,.15);color:var(--tx);font-family:'Mulish',sans-serif;font-size:13px;font-weight:600;text-decoration:none;transition:all .25s;margin-top:8px}
+.emb:hover{background:linear-gradient(135deg,rgba(45,108,223,.5),rgba(217,58,80,.5));transform:translateY(-1px)}
+.dzone{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;background:var(--gb);border:1px solid var(--gbd);margin-bottom:8px}
+.soon{padding:3px 10px;border-radius:50px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:10px;font-weight:700;margin-left:auto}
+.cov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .3s}
+.cov.open{opacity:1;pointer-events:all}
+.cdr{position:fixed;top:0;right:0;bottom:0;z-index:201;width:420px;max-width:95vw;background:rgba(10,16,30,.97);border-left:1px solid var(--gbd);transform:translateX(100%);transition:transform .4s cubic-bezier(.23,1,.32,1);display:flex;flex-direction:column}
+.cdr.open{transform:translateX(0)}
+.chr{padding:24px 24px 16px;border-bottom:1px solid var(--gbd);display:flex;align-items:center;justify-content:space-between}
+.cht{font-family:'Unbounded',sans-serif;font-size:16px;font-weight:700}
+.ccl{width:32px;height:32px;border-radius:50%;background:var(--gb);border:1px solid var(--gbd);color:var(--tx);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.cits{flex:1;overflow-y:auto;padding:16px 24px}
+.cit{display:flex;align-items:flex-start;gap:12px;padding:13px;border-radius:16px;background:var(--gb);border:1px solid var(--gbd);margin-bottom:9px}
+.cimg{width:44px;height:44px;border-radius:10px;object-fit:cover;flex-shrink:0}
+.cinf{flex:1;min-width:0}
+.cin{font-size:12px;font-weight:600;margin-bottom:2px}
+.cim{font-size:10px;color:var(--tm);margin-bottom:4px}
+.cip{font-size:13px;font-weight:700;color:var(--gold)}
+.cqw{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.05);border-radius:50px;padding:3px 7px;flex-shrink:0}
+.qb{width:20px;height:20px;border-radius:50%;background:var(--gb);border:1px solid var(--gbd);color:var(--tx);cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center}
+.qn{font-size:12px;font-weight:700;min-width:14px;text-align:center}
+.cemp{text-align:center;padding:50px 20px;color:var(--tm)}
+.cft{padding:16px 24px 26px;border-top:1px solid var(--gbd)}
+.ctot{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.ctlb{font-size:12px;color:var(--tm)}
+.ctam{font-family:'Unbounded',sans-serif;font-size:21px;font-weight:700;color:var(--gold)}
+.paybtn{width:100%;padding:16px;border-radius:50px;border:none;cursor:pointer;font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--blue),var(--red));box-shadow:0 8px 32px rgba(45,108,223,.3);transition:all .3s}
+.paybtn:hover:not(:disabled){transform:translateY(-2px)}
+.paybtn:disabled{opacity:.45;cursor:not-allowed}
+.snote{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:9px;font-size:11px;color:var(--tm)}
+.sbadge{padding:2px 7px;border-radius:50px;background:rgba(99,91,255,.15);border:1px solid rgba(99,91,255,.3);color:#9b8fff;font-weight:700;font-size:10px}
+.inp{padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.06);color:#f0eee8;font-family:'Mulish',sans-serif;font-size:13px;outline:none;width:100%;transition:border-color .2s}
+.inp:focus{border-color:rgba(45,108,223,.5)}
+.inp::placeholder{color:rgba(240,238,232,.35)}
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);z-index:400;padding:11px 20px;border-radius:50px;background:rgba(20,30,55,.97);border:1px solid var(--gbd);font-size:12px;font-weight:600;white-space:nowrap;transition:transform .4s cubic-bezier(.23,1,.32,1)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+footer{position:relative;z-index:1;border-top:1px solid var(--gbd);padding:36px 40px;text-align:center;color:var(--tm);font-size:12px}
+@media(max-width:900px){nav{padding:10px 14px}.nlinks{display:none}.hero{grid-template-columns:1fr;padding:100px 16px 50px;gap:28px}.sec{padding:32px 16px}.pgrid{grid-template-columns:1fr}.modal{padding:22px}.kg{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="orbs"><div class="orb o1"></div><div class="orb o2"></div></div>
+
+<nav>
+  <div class="nlogo"><img src="/images/logo.png" alt="Russian Corner" onclick="window.scrollTo({top:0,behavior:'smooth'})"></div>
+  <div class="nlinks">
+    <button class="nl act" id="n-menu" onclick="scrollToMenu()">Menu</button>
+    <button class="nl" id="n-about" onclick="openMod('about')">About us</button>
+    <button class="nl" id="n-delivery" onclick="openMod('delivery')">Delivery &amp; payment</button>
+  </div>
+  <div class="nright">
+    <div class="langs">
+      <button class="lb" onclick="setLang('ru')">RU</button>
+      <button class="lb act" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="ncart" onclick="toggleCart()">
+      🛒 <span id="lbl-cart">Cart</span>
+      <div class="cbadge" id="cartBadge">0</div>
+    </button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="hbadge"><div class="hdot"></div><span id="lbl-soon">✦ COMING SOON</span></div>
+    <h1 class="htitle"><span class="hgrad" id="lbl-h1">Taste of Russia</span><br><span id="lbl-h2">at your door</span></h1>
+    <p class="hsub" id="lbl-hsub">Living in London and missing real home-style Russian food? Great news for residents of Battersea, Nine Elms and Vauxhall. Russian Corner cooks fresh every day. Delivered by Russian-speaking couriers. All dishes made without onion.</p>
+    <button class="hbtn" onclick="scrollToMenu()"><span id="lbl-hbtn">Browse menu →</span></button>
+  </div>
+  <div class="hgrid">
+    <div class="hcard wide" onclick="scrollToMenu()">
+      <img src="/images/olivier.jpg" alt="Olivier" onerror="this.style.display='none'">
+      <div class="hcbody"><div class="hcname" id="lbl-hc1">Olivier Salad</div><div class="hcprice">from £13.99</div></div>
+    </div>
+    <div class="hcard sm" onclick="scrollToMenu()">
+      <img src="/images/dumplings.jpg" alt="Pelmeni" onerror="this.style.display='none'">
+      <div class="hcbody"><div class="hcname" id="lbl-hc2">Pelmeni</div><div class="hcprice">from £29.99</div></div>
+    </div>
+    <div class="hcard sm" onclick="scrollToMenu()">
+      <img src="/images/blini.jpg" alt="Blini" onerror="this.style.display='none'">
+      <div class="hcbody"><div class="hcname" id="lbl-hc3">Blini</div><div class="hcprice">from £9.99</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="menu-section">
+  <div class="sech">
+    <div class="sect" id="lbl-menu">Menu</div>
+    <div class="secs" id="lbl-menusub">Fresh, authentic, homemade · All dishes without onion</div>
+  </div>
+  <div class="pgrid" id="pgrid"></div>
+</section>
+
+<!-- ABOUT -->
+<div class="ov" id="ov-about" onclick="if(event.target===this)closeMod('about')">
+  <div class="modal">
+    <div class="mh"><div class="mt" id="lbl-about">About us</div><button class="mx" onclick="closeMod('about')">✕</button></div>
+    <div class="ms"><div class="msl" id="lbl-story">Our story</div><p class="mtxt" id="lbl-storyt">Russian Corner brings authentic home-style Russian cuisine to the heart of London. We cook fresh every day — no preservatives, no onion.</p></div>
+    <div class="ms"><div class="msl" id="lbl-co">Company details</div>
+      <div class="irow"><span class="irl" id="lbl-rn">Registered name</span><span class="irv">Hype Frame Ltd</span></div>
+      <div class="irow"><span class="irl" id="lbl-ta">Trading as</span><span class="irv">Russian Corner</span></div>
+      <div class="irow"><span class="irl" id="lbl-ty">Type</span><span class="irv">Private Limited Company</span></div>
+      <div class="irow"><span class="irl" id="lbl-cn">Company No.</span><span class="irv">16555812</span></div>
+      <div class="irow"><span class="irl" id="lbl-ad">Registered address</span><span class="irv">20 Wenlock Road, London, N1 7GU</span></div>
+      <div class="irow"><span class="irl" id="lbl-inc">Incorporated</span><span class="irv">2 July 2025</span></div>
+    </div>
+    <div class="ms"><div class="msl" id="lbl-contact">Contact</div><p class="mtxt" id="lbl-contactt">Got questions? We respond within 24 hours.</p><a href="mailto:info@russiancorner.co.uk" class="emb">✉ info@russiancorner.co.uk</a></div>
+    <div class="ms"><div class="msl" id="lbl-ret">Returns policy</div><p class="mtxt" id="lbl-rett">As all our products are perishable food items, we cannot accept returns once delivered. If your order arrived in unsatisfactory condition, contact us within 2 hours with a photo.</p></div>
+    <div class="ms"><div class="msl">Privacy Policy</div><p class="mtxt" id="lbl-priv">Hype Frame Ltd (trading as Russian Corner) processes your personal data solely to process and deliver your order. Payment data is processed by Stripe and not stored by us. You may request access or deletion at info@russiancorner.co.uk. Complies with UK GDPR and Data Protection Act 2018.</p></div>
+  </div>
+</div>
+
+<!-- DELIVERY -->
+<div class="ov" id="ov-delivery" onclick="if(event.target===this)closeMod('delivery')">
+  <div class="modal">
+    <div class="mh"><div class="mt" id="lbl-del">Delivery &amp; payment</div><button class="mx" onclick="closeMod('delivery')">✕</button></div>
+    <div class="ms"><div class="msl" id="lbl-fee">Fee</div>
+      <div class="irow"><span class="irl" id="lbl-courier">Courier delivery</span><span class="irv" style="color:var(--gold);font-family:'Unbounded',sans-serif">£3.99</span></div>
+      <div class="irow"><span class="irl" id="lbl-min">Minimum order</span><span class="irv">£15.00</span></div>
+    </div>
+    <div class="ms"><div class="msl" id="lbl-zones">Delivery zones</div>
+      <div class="dzone"><span style="font-size:20px">📍</span><div><div style="font-size:13px;font-weight:600">Battersea Power Station</div><div style="font-size:11px;color:var(--tm)">SW8, SW11</div></div></div>
+      <div class="dzone"><span style="font-size:20px">📍</span><div><div style="font-size:13px;font-weight:600">Nine Elms</div><div style="font-size:11px;color:var(--tm)">SW8</div></div></div>
+      <div class="dzone"><span style="font-size:20px">📍</span><div><div style="font-size:13px;font-weight:600">Vauxhall</div><div style="font-size:11px;color:var(--tm)">SE11, SW8</div></div></div>
+      <div class="dzone" style="border-color:rgba(201,168,76,.25)"><span style="font-size:20px">🚀</span><div style="flex:1"><div style="font-size:13px;font-weight:600" id="lbl-deliveroo">Deliveroo — coming soon</div><div style="font-size:11px;color:var(--tm)" id="lbl-deliveroo2">Expanding across London</div></div><div class="soon" id="lbl-soon2">Soon</div></div>
+    </div>
+    <div class="ms"><div class="msl" id="lbl-couriers">Our couriers</div><p class="mtxt" id="lbl-courierst">All deliveries are made by Russian-speaking couriers. Food is delivered chilled in insulated bags.</p></div>
+    <div class="ms"><div class="msl" id="lbl-pay">Payment</div><p class="mtxt" id="lbl-payt">We accept all major cards via Stripe — Visa, Mastercard, Amex. SSL-encrypted. Card details never stored.</p></div>
+    <div class="ms"><div class="msl" id="lbl-q">Questions?</div><a href="mailto:info@russiancorner.co.uk" class="emb">✉ info@russiancorner.co.uk</a></div>
+  </div>
+</div>
+
+<!-- NUTRITION -->
+<div class="ov" id="ov-nutrition" onclick="if(event.target===this)closeMod('nutrition')">
+  <div class="modal">
+    <div class="mh"><div class="mt" id="nutri-title">Info</div><button class="mx" onclick="closeMod('nutrition')">✕</button></div>
+    <div id="nutri-body"></div>
+  </div>
+</div>
+
+<!-- CHECKOUT -->
+<div class="ov" id="ov-checkout" onclick="if(event.target===this)closeMod('checkout')">
+  <div class="modal" style="max-width:480px">
+    <div class="mh"><div class="mt" id="lbl-co2">Checkout</div><button class="mx" onclick="closeMod('checkout')">✕</button></div>
+    <div class="ms"><div class="msl" id="lbl-yourdet">Your details</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <input id="co-name" type="text" class="inp" placeholder="Name *">
+        <input id="co-email" type="email" class="inp" placeholder="Email *">
+        <input id="co-phone" type="tel" class="inp" placeholder="Phone *">
+      </div>
+    </div>
+    <div class="ms"><div class="msl" id="lbl-deldet">Delivery</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <input id="co-addr" type="text" class="inp" placeholder="Delivery address *">
+        <input id="co-instr" type="text" class="inp" placeholder="Flat No., door code...">
+        <input id="co-time" type="text" class="inp" placeholder="Preferred delivery time">
+        <textarea id="co-comment" rows="2" class="inp" placeholder="Comment to order" style="resize:none"></textarea>
+      </div>
+    </div>
+    <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:13px 16px;margin-bottom:18px;font-size:12px;color:rgba(240,238,232,.6)">
+      🚚 <span id="lbl-delnote">Delivery £3.99 · Battersea, Nine Elms, Vauxhall</span>
+    </div>
+    <button id="co-btn" onclick="submitCheckout()" style="width:100%;padding:16px;border-radius:50px;border:none;cursor:pointer;font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;color:#fff;background:linear-gradient(135deg,#2d6cdf,#d93a50);box-shadow:0 8px 32px rgba(45,108,223,.3)">
+      <span id="lbl-cobtn">Proceed to payment →</span>
+    </button>
+    <div style="text-align:center;margin-top:10px;font-size:11px;color:rgba(240,238,232,.4)">🔒 <span id="lbl-cosec">Secure payment via Stripe</span></div>
+  </div>
+</div>
+
+<!-- CART -->
+<div class="cov" id="cart-ov" onclick="toggleCart()"></div>
+<div class="cdr" id="cart-dr">
+  <div class="chr">
+    <div class="cht">🛒 <span id="lbl-carttitle">Cart</span></div>
+    <button class="ccl" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cits" id="cart-items"></div>
+  <div class="cft">
+    <div class="ctot"><div class="ctlb" id="lbl-total">Total</div><div class="ctam" id="cart-total">£0.00</div></div>
+    <button class="paybtn" id="pay-btn" onclick="checkout()" disabled><span id="lbl-pay2">Pay →</span></button>
+    <div class="snote">🔒 <span id="lbl-sec">Secure payment</span> <span class="sbadge">stripe</span></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<footer>
+  <p style="margin-bottom:6px;font-family:'Unbounded',sans-serif;font-size:13px;color:var(--gold)">Russian Corner</p>
+  <p>© 2026 Hype Frame Ltd · Company No. 16555812 · Battersea · Nine Elms · Vauxhall</p>
+</footer>
+
+<script>
+var lang = 'en';
+var TR = {
+  en: { 'n-menu':'Menu','n-about':'About us','n-delivery':'Delivery & payment','lbl-cart':'Cart','lbl-carttitle':'Cart','lbl-total':'Total','lbl-pay2':'Pay →','lbl-sec':'Secure payment','lbl-soon':'✦ COMING SOON','lbl-h1':'Taste of Russia','lbl-h2':'at your door','lbl-hsub':'Living in London and missing real home-style Russian food? Great news for residents of Battersea, Nine Elms and Vauxhall. Russian Corner cooks fresh every day. Delivered by Russian-speaking couriers. All dishes made without onion.','lbl-hbtn':'Browse menu →','lbl-hc1':'Olivier Salad','lbl-hc2':'Pelmeni','lbl-hc3':'Blini','lbl-menu':'Menu','lbl-menusub':'Fresh, authentic, homemade · All dishes without onion','lbl-about':'About us','lbl-story':'Our story','lbl-storyt':'Russian Corner brings authentic home-style Russian cuisine to the heart of London. We cook fresh every day — no preservatives, no onion.','lbl-co':'Company details','lbl-rn':'Registered name','lbl-ta':'Trading as','lbl-ty':'Type','lbl-cn':'Company No.','lbl-ad':'Registered address','lbl-inc':'Incorporated','lbl-contact':'Contact','lbl-contactt':'Got questions? We respond within 24 hours.','lbl-ret':'Returns policy','lbl-rett':'As all our products are perishable food items, we cannot accept returns once delivered. If your order arrived in unsatisfactory condition, contact us within 2 hours with a photo.','lbl-priv':'Hype Frame Ltd (trading as Russian Corner) processes your personal data solely to process and deliver your order. Payment data is processed by Stripe and not stored by us. Complies with UK GDPR and Data Protection Act 2018.','lbl-del':'Delivery & payment','lbl-fee':'Fee','lbl-courier':'Courier delivery','lbl-min':'Minimum order','lbl-zones':'Delivery zones','lbl-deliveroo':'Deliveroo — coming soon','lbl-deliveroo2':'Expanding across London','lbl-soon2':'Soon','lbl-couriers':'Our couriers','lbl-courierst':'All deliveries are made by Russian-speaking couriers. Food is delivered chilled in insulated bags.','lbl-pay':'Payment','lbl-payt':'We accept all major cards via Stripe — Visa, Mastercard, Amex. SSL-encrypted.','lbl-q':'Questions?','lbl-co2':'Checkout','lbl-yourdet':'Your details','lbl-deldet':'Delivery','lbl-delnote':'Delivery £3.99 · Battersea, Nine Elms, Vauxhall','lbl-cobtn':'Proceed to payment →','lbl-cosec':'Secure payment via Stripe','vlabel':'Size / Quantity','slabel':'Sauce (+£0.99)','ctitle':'📦 Deliver in container +£4.99','csub':'Container can be reused — less waste','no-aller':'None','extra-label':'Good to know','ingr-label':'Ingredients','aller-label':'Allergens','nutri-label':'Nutrition (per 100 g)','kcal':'kcal','prot':'Protein','fat':'Fat','carbs':'Carbs','empty':'Your cart is empty','added':'✓ Added:','req':'Please fill in all required fields (*)','connecting':'Connecting...','err':'Error: ','name-ph':'Name *','email-ph':'Email *','phone-ph':'Phone *','addr-ph':'Delivery address *','instr-ph':'Flat No., door code...','time-ph':'Preferred delivery time','comment-ph':'Comment to order' },
+  ru: { 'n-menu':'Меню','n-about':'О нас','n-delivery':'Доставка и оплата','lbl-cart':'Корзина','lbl-carttitle':'Корзина','lbl-total':'Итого','lbl-pay2':'Оплатить →','lbl-sec':'Безопасная оплата','lbl-soon':'✦ СКОРО ОТКРЫТИЕ','lbl-h1':'Вкус России','lbl-h2':'у вас дома','lbl-hsub':'Живёте в Лондоне и скучаете по домашней русской еде? Отличные новости для жителей Battersea, Nine Elms и Vauxhall. Russian Corner готовит каждый день. Доставляют русскоговорящие курьеры. Все блюда без лука.','lbl-hbtn':'Смотреть меню →','lbl-hc1':'Салат Оливье','lbl-hc2':'Пельмени','lbl-hc3':'Блины','lbl-menu':'Меню','lbl-menusub':'Свежее, настоящее, домашнее · Все блюда без лука','lbl-about':'О нас','lbl-story':'Наша история','lbl-storyt':'Russian Corner — домашняя русская кухня в сердце Лондона. Готовим каждый день из свежих ингредиентов, без консервантов и без лука.','lbl-co':'Реквизиты','lbl-rn':'Юридическое название','lbl-ta':'Торговое название','lbl-ty':'Тип','lbl-cn':'Рег. номер','lbl-ad':'Адрес','lbl-inc':'Дата регистрации','lbl-contact':'Контакт','lbl-contactt':'Есть вопросы? Отвечаем в течение 24 часов.','lbl-ret':'Возвраты','lbl-rett':'Поскольку все блюда являются скоропортящимися продуктами, мы не принимаем возвраты. Если заказ пришёл в ненадлежащем состоянии — напишите в течение 2 часов с фото.','lbl-priv':'Hype Frame Ltd («Russian Corner») обрабатывает персональные данные исключительно для обработки заказов. Платёжные данные обрабатываются Stripe. Соответствует UK GDPR и Data Protection Act 2018.','lbl-del':'Доставка и оплата','lbl-fee':'Стоимость','lbl-courier':'Доставка курьером','lbl-min':'Минимальный заказ','lbl-zones':'Зоны доставки','lbl-deliveroo':'Deliveroo — скоро','lbl-deliveroo2':'Расширение географии','lbl-soon2':'Скоро','lbl-couriers':'Наши курьеры','lbl-courierst':'Доставляют русскоговорящие курьеры в термосумках.','lbl-pay':'Оплата','lbl-payt':'Принимаем все карты через Stripe. Данные защищены и не хранятся.','lbl-q':'Вопросы?','lbl-co2':'Оформление заказа','lbl-yourdet':'Контактные данные','lbl-deldet':'Доставка','lbl-delnote':'Доставка £3.99 · Battersea, Nine Elms, Vauxhall','lbl-cobtn':'Перейти к оплате →','lbl-cosec':'Безопасная оплата через Stripe','vlabel':'Размер / Количество','slabel':'Соус (+£0.99)','ctitle':'📦 Привезти в контейнере +£4.99','csub':'Контейнер можно использовать повторно','no-aller':'Нет','extra-label':'Важно знать','ingr-label':'Состав','aller-label':'Аллергены','nutri-label':'Пищевая ценность (на 100 г)','kcal':'Ккал','prot':'Белки','fat':'Жиры','carbs':'Углев.','empty':'Корзина пуста','added':'✓ Добавлено:','req':'Пожалуйста, заполните обязательные поля (*)','connecting':'Подключение...','err':'Ошибка: ','name-ph':'Имя *','email-ph':'Email *','phone-ph':'Телефон *','addr-ph':'Адрес доставки *','instr-ph':'Квартира, домофон...','time-ph':'Желаемое время доставки','comment-ph':'Комментарий к заказу' }
+};
+function T(k){ return (TR[lang]&&TR[lang][k])||TR.en[k]||k; }
+
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lb').forEach(function(b){ b.classList.toggle('act', b.textContent.toLowerCase()===l); });
+  Object.keys(TR.en).forEach(function(k){
+    var el = document.getElementById(k);
+    if (el && el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA') el.textContent = T(k);
+  });
+  document.getElementById('co-name').placeholder = T('name-ph');
+  document.getElementById('co-email').placeholder = T('email-ph');
+  document.getElementById('co-phone').placeholder = T('phone-ph');
+  document.getElementById('co-addr').placeholder = T('addr-ph');
+  document.getElementById('co-instr').placeholder = T('instr-ph');
+  document.getElementById('co-time').placeholder = T('time-ph');
+  document.getElementById('co-comment').placeholder = T('comment-ph');
+  localStorage.setItem('rc-lang', l);
+  renderProducts();
+  renderCart();
+}
+
+var PRODS = [
+  { id:1, img:'/images/olivier.jpg', nameRu:'Салат Оливье', nameEn:'Olivier Salad', descRu:'Классический рецепт с варёной колбасой, картошкой, горошком и майонезом. Без лука.', descEn:'Classic recipe with sausage, potato, peas and mayo. No onion.', tag:'hit', tagRu:'Хит', tagEn:'Hit', vars:[{ru:'200 г',en:'200 g',p:13.99},{ru:'500 г',en:'500 g',p:24.99},{ru:'1 кг',en:'1 kg',p:43.99}], con:true, sv:0, sc:false, sauce:null,
+    nu:{ ru:{i:'Картофель, яйца, колбаса варёная, морковь, горошек, огурец маринованный, майонез',a:'Яйца, горчица (в майонезе)',k:{c:180,p:6,f:14,b:10}}, en:{i:'Potato, eggs, cooked sausage, carrot, peas, pickled cucumber, mayo',a:'Eggs, mustard (in mayo)',k:{c:180,p:6,f:14,b:10}} }},
+  { id:2, img:'/images/crab.jpg', nameRu:'Крабовый салат', nameEn:'Crab Salad', descRu:'С крабовыми палочками, кукурузой, яйцом и майонезом. Без лука.', descEn:'With crab sticks, corn, egg and mayo. No onion.', tag:null, vars:[{ru:'200 г',en:'200 g',p:13.99},{ru:'500 г',en:'500 g',p:24.99},{ru:'1 кг',en:'1 kg',p:43.99}], con:true, sv:0, sc:false, sauce:null,
+    nu:{ ru:{i:'Крабовые палочки (сурими), кукуруза, яйца, майонез',a:'Рыба (сурими), яйца, горчица, глютен',k:{c:155,p:7,f:10,b:9}}, en:{i:'Crab sticks (surimi), corn, eggs, mayo',a:'Fish (surimi), eggs, mustard, gluten',k:{c:155,p:7,f:10,b:9}} }},
+  { id:3, img:'/images/blini.jpg', nameRu:'Блины', nameEn:'Blini', descRu:'Тонкие домашние блины. Подаются с соусом на выбор.', descEn:'Thin homemade pancakes. Served with your choice of sauce.', tag:'new', tagRu:'Новинка', tagEn:'New', vars:[{ru:'2 шт.',en:'2 pcs',p:9.99},{ru:'4 шт.',en:'4 pcs',p:18.99},{ru:'8 шт.',en:'8 pcs',p:32.99}], con:true, sv:0, sc:false, sauce:null,
+    sauces:[{ru:'Со сметаной',en:'Sour cream',p:0.99},{ru:'Со сгущёнкой',en:'Condensed milk',p:0.99},{ru:'С абрикосовым вареньем',en:'Apricot jam',p:0.99}],
+    nu:{ ru:{i:'Мука пшеничная, молоко, яйца, масло сливочное, сахар, соль',a:'Глютен, яйца, молоко',k:{c:215,p:6,f:9,b:28}}, en:{i:'Wheat flour, milk, eggs, butter, sugar, salt',a:'Gluten (wheat), eggs, milk',k:{c:215,p:6,f:9,b:28}} }},
+  { id:4, img:'/images/dumplings.jpg', nameRu:'Домашние пельмени', nameEn:'Homemade Pelmeni', descRu:'Свинина+говядина, лепим вручную. Продаются замороженными — инструкция в комплекте.', descEn:'Pork & beef, handmade daily. Sold frozen — cooking instructions included.', tag:'hit', tagRu:'Хит', tagEn:'Hit', vars:[{ru:'500 г',en:'500 g',p:29.99},{ru:'1 кг',en:'1 kg',p:54.99},{ru:'2 кг',en:'2 kg',p:99.99}], con:false, sv:0, sc:false, sauce:null,
+    nu:{ ru:{i:'Тесто (мука, вода, яйцо, соль), фарш (свинина 50%, говядина 50%), перец, соль',a:'Глютен, яйца',k:{c:245,p:12,f:11,b:24},x:'Настоящие ценители пельменей знают: они должны быть с пылу с жару! Поэтому мы продаём их замороженными — так они сохраняют весь вкус. В каждый заказ вкладываем инструкцию как сварить вкусно.'}, en:{i:'Dough (flour, water, egg, salt), filling (50% pork, 50% beef), pepper, salt',a:'Gluten (wheat), eggs',k:{c:245,p:12,f:11,b:24},x:"True pelmeni lovers know they must be served piping hot! That's why we sell ours frozen — preserving all the flavour. Every order includes cooking instructions."} }},
+  { id:5, img:'/images/sharlotka.jpg', nameRu:'Яблочная шарлотка', nameEn:'Apple Charlotte', descRu:'Нежный домашний яблочный пирог. Один кусочек или целый пирог.', descEn:'Light homemade apple cake. One slice or the whole cake.', tag:null, vars:[{ru:'1 кусочек',en:'1 slice',p:9.99},{ru:'Целый пирог (8 кусочков)',en:'Whole cake (8 slices)',p:69.99}], con:false, sv:0, sc:false, sauce:null,
+    nu:{ ru:{i:'Яблоки, яйца, сахар, мука пшеничная, масло сливочное, ваниль, разрыхлитель, корица',a:'Глютен, яйца, молоко',k:{c:210,p:4,f:7,b:33}}, en:{i:'Apples, eggs, sugar, wheat flour, butter, vanilla, baking powder, cinnamon',a:'Gluten (wheat), eggs, milk (butter)',k:{c:210,p:4,f:7,b:33}} }}
+];
+
+function getP(id){ return PRODS.filter(function(p){return p.id===id;})[0]; }
+
+function renderProducts() {
+  var grid = document.getElementById('pgrid');
+  while(grid.firstChild) grid.removeChild(grid.firstChild);
+  PRODS.forEach(function(p) {
+    var nm = lang==='ru' ? p.nameRu : p.nameEn;
+    var ds = lang==='ru' ? p.descRu : p.descEn;
+    var v = p.vars[p.sv];
+    var tot = v.p + (p.sc ? 4.99 : 0) + (p.sauces && p.sauce!==null ? p.sauces[p.sauce].p : 0);
+
+    var card = document.createElement('div'); card.className = 'pc';
+
+    // image
+    var iw = document.createElement('div'); iw.className = 'pimg';
+    var im = document.createElement('img'); im.src = p.img; im.alt = nm;
+    im.onerror = function(){ var d=document.createElement('div'); d.className='pph'; d.textContent='🍽'; this.parentNode.replaceChild(d,this); };
+    iw.appendChild(im);
+    if (p.tag) { var tg=document.createElement('div'); tg.className='ptag '+p.tag; tg.textContent=lang==='ru'?p.tagRu:p.tagEn; iw.appendChild(tg); }
+    card.appendChild(iw);
+
+    // body
+    var bd = document.createElement('div'); bd.className = 'pb';
+    var pn = document.createElement('div'); pn.className='pname'; pn.textContent=nm; bd.appendChild(pn);
+    var pd = document.createElement('div'); pd.className='pdesc'; pd.textContent=ds; bd.appendChild(pd);
+    var vl = document.createElement('div'); vl.className='vlabel'; vl.textContent=T('vlabel'); bd.appendChild(vl);
+
+    var vw = document.createElement('div'); vw.className='vars';
+    p.vars.forEach(function(vr,i){
+      var b=document.createElement('button'); b.className='vbtn'+(i===p.sv?' sel':'');
+      b.textContent=(lang==='ru'?vr.ru:vr.en)+' — £'+vr.p.toFixed(2);
+      (function(pid,idx){b.onclick=function(){getP(pid).sv=idx;renderProducts();};})(p.id,i);
+      vw.appendChild(b);
+    }); bd.appendChild(vw);
+
+    if (p.sauces) {
+      var sw=document.createElement('div'); sw.className='ssec';
+      var sl=document.createElement('div'); sl.className='slabel'; sl.textContent=T('slabel'); sw.appendChild(sl);
+      var so=document.createElement('div'); so.className='sopts';
+      p.sauces.forEach(function(s,i){
+        var b=document.createElement('button'); b.className='sbtn'+(p.sauce===i?' sel':'');
+        b.textContent=lang==='ru'?s.ru:s.en;
+        (function(pid,idx){b.onclick=function(){var pr=getP(pid);pr.sauce=pr.sauce===idx?null:idx;renderProducts();};})(p.id,i);
+        so.appendChild(b);
+      }); sw.appendChild(so); bd.appendChild(sw);
+    }
+
+    if (p.con) {
+      var co=document.createElement('div'); co.className='copt'+(p.sc?' chk':'');
+      var cb=document.createElement('div'); cb.className='cbox';
+      var ct=document.createElement('span'); ct.className='ctick'; ct.textContent='✓'; cb.appendChild(ct);
+      var ce=document.createElement('div'); ce.className='cetxt';
+      var ct2=document.createElement('div'); ct2.className='ctitle'; ct2.textContent=T('ctitle'); ce.appendChild(ct2);
+      var cs=document.createElement('div'); cs.className='csub'; cs.textContent=T('csub'); ce.appendChild(cs);
+      co.appendChild(cb); co.appendChild(ce);
+      (function(pid){co.onclick=function(){var pr=getP(pid);pr.sc=!pr.sc;renderProducts();};})(p.id);
+      bd.appendChild(co);
+    }
+
+    var pf=document.createElement('div'); pf.className='pfoot';
+    var pp=document.createElement('div'); pp.className='pprice'; pp.textContent='£'+tot.toFixed(2); pf.appendChild(pp);
+    var pa=document.createElement('div'); pa.className='pacts';
+    var ib=document.createElement('button'); ib.className='ibtn'; ib.textContent='ℹ';
+    (function(pid){ib.onclick=function(){showNutri(pid);};})(p.id);
+    var ab=document.createElement('button'); ab.className='abtn'; ab.id='abtn-'+p.id; ab.textContent='+';
+    (function(pid){ab.onclick=function(){addCart(pid);};})(p.id);
+    pa.appendChild(ib); pa.appendChild(ab); pf.appendChild(pa); bd.appendChild(pf);
+    card.appendChild(bd);
+    grid.appendChild(card);
+  });
+}
+
+function showNutri(id) {
+  var p = getP(id);
+  var n = p.nu[lang];
+  var nm = lang==='ru'?p.nameRu:p.nameEn;
+  document.getElementById('nutri-title').textContent = nm;
+  var body = document.getElementById('nutri-body');
+  body.innerHTML = '';
+  if (n.x) {
+    var ex=document.createElement('div'); ex.className='ms';
+    var exl=document.createElement('div'); exl.className='msl'; exl.textContent=T('extra-label'); ex.appendChild(exl);
+    var ext=document.createElement('p'); ext.className='mtxt'; ext.textContent=n.x; ex.appendChild(ext);
+    body.appendChild(ex);
+  }
+  var is=document.createElement('div'); is.className='ms';
+  var il=document.createElement('div'); il.className='msl'; il.textContent=T('ingr-label'); is.appendChild(il);
+  var itg=document.createElement('div'); itg.className='itags';
+  n.i.split(',').forEach(function(ing){ var tg=document.createElement('span'); tg.className='itag'; tg.textContent=ing.trim(); itg.appendChild(tg); });
+  is.appendChild(itg); body.appendChild(is);
+  var as=document.createElement('div'); as.className='ms';
+  var al=document.createElement('div'); al.className='msl'; al.textContent=T('aller-label'); as.appendChild(al);
+  var atg=document.createElement('div'); atg.className='itags';
+  if (n.a===T('no-aller')||n.a==='Нет'||n.a==='None') {
+    var tg=document.createElement('span'); tg.className='itag'; tg.textContent=T('no-aller'); atg.appendChild(tg);
+  } else {
+    n.a.split(',').forEach(function(a){ var tg=document.createElement('span'); tg.className='itag atag'; tg.textContent=a.trim(); atg.appendChild(tg); });
+  }
+  as.appendChild(atg); body.appendChild(as);
+  var ks=document.createElement('div'); ks.className='ms';
+  var kl=document.createElement('div'); kl.className='msl'; kl.textContent=T('nutri-label'); ks.appendChild(kl);
+  var kg=document.createElement('div'); kg.className='kg';
+  [[n.k.c,T('kcal')],[n.k.p+'g',T('prot')],[n.k.f+'g',T('fat')],[n.k.b+'g',T('carbs')]].forEach(function(x){
+    var kc=document.createElement('div'); kc.className='kc';
+    var kv=document.createElement('div'); kv.className='kv'; kv.textContent=x[0]; kc.appendChild(kv);
+    var klb=document.createElement('div'); klb.className='kl'; klb.textContent=x[1]; kc.appendChild(klb);
+    kg.appendChild(kc);
+  });
+  ks.appendChild(kg); body.appendChild(ks);
+  openMod('nutrition');
+}
+
+function openMod(id){ document.getElementById('ov-'+id).classList.add('open'); document.body.style.overflow='hidden'; }
+function closeMod(id){ document.getElementById('ov-'+id).classList.remove('open'); document.body.style.overflow=''; }
+
+var cart = [];
+function addCart(id) {
+  var p=getP(id), v=p.vars[p.sv];
+  var vl=lang==='ru'?v.ru:v.en;
+  var pr=v.p, meta=[vl];
+  if(p.sc){pr+=4.99;meta.push(lang==='ru'?'+контейнер':'+container');}
+  if(p.sauces&&p.sauce!==null){var s=p.sauces[p.sauce];pr+=s.p;meta.push(lang==='ru'?s.ru:s.en);}
+  var key=id+'-'+p.sv+'-'+p.sc+'-'+p.sauce;
+  var ex=null; cart.forEach(function(i){if(i.key===key)ex=i;});
+  if(ex){ex.qty++;}else{cart.push({key:key,id:id,qty:1,name:lang==='ru'?p.nameRu:p.nameEn,img:p.img,meta:meta.join(' · '),pr:pr});}
+  updateCart();
+  toast(T('added')+' '+(lang==='ru'?p.nameRu:p.nameEn));
+  var btn=document.getElementById('abtn-'+id);
+  if(btn){btn.classList.add('added');btn.textContent='✓';setTimeout(function(){btn.classList.remove('added');btn.textContent='+';},1500);}
+}
+function updateCart(){
+  var tot=0,cnt=0;
+  cart.forEach(function(i){tot+=i.pr*i.qty;cnt+=i.qty;});
+  document.getElementById('cartBadge').textContent=cnt;
+  document.getElementById('cart-total').textContent='£'+tot.toFixed(2);
+  document.getElementById('pay-btn').disabled=cart.length===0;
+  renderCart();
+}
+function renderCart(){
+  var el=document.getElementById('cart-items');
+  if(!cart.length){el.innerHTML='<div class="cemp">🛒<br><br>'+T('empty')+'</div>';return;}
+  while(el.firstChild)el.removeChild(el.firstChild);
+  cart.forEach(function(item){
+    var d=document.createElement('div'); d.className='cit';
+    var im=document.createElement('img'); im.className='cimg'; im.src=item.img; im.alt='';
+    im.onerror=function(){this.style.display='none';};
+    d.appendChild(im);
+    var inf=document.createElement('div'); inf.className='cinf';
+    var n=document.createElement('div'); n.className='cin'; n.textContent=item.name; inf.appendChild(n);
+    var m=document.createElement('div'); m.className='cim'; m.textContent=item.meta; inf.appendChild(m);
+    var pr=document.createElement('div'); pr.className='cip'; pr.textContent='£'+(item.pr*item.qty).toFixed(2); inf.appendChild(pr);
+    d.appendChild(inf);
+    var qw=document.createElement('div'); qw.className='cqw';
+    var bm=document.createElement('button'); bm.className='qb'; bm.textContent='−';
+    (function(k){bm.onclick=function(){chgQty(k,-1);};})(item.key);
+    var qn=document.createElement('div'); qn.className='qn'; qn.textContent=item.qty;
+    var bp=document.createElement('button'); bp.className='qb'; bp.textContent='+';
+    (function(k){bp.onclick=function(){chgQty(k,1);};})(item.key);
+    qw.appendChild(bm); qw.appendChild(qn); qw.appendChild(bp); d.appendChild(qw);
+    el.appendChild(d);
+  });
+}
+function chgQty(key,d){
+  var item=null; cart.forEach(function(i){if(i.key===key)item=i;});
+  if(!item)return; item.qty+=d;
+  if(item.qty<=0){var nc=[];cart.forEach(function(i){if(i.key!==key)nc.push(i);});cart=nc;}
+  updateCart();
+}
+function toggleCart(){ document.getElementById('cart-dr').classList.toggle('open'); document.getElementById('cart-ov').classList.toggle('open'); }
+function checkout(){ if(!cart.length)return; openMod('checkout'); }
+
+var CHECKOUT_URL = 'https://russiancorner.vercel.app/api/checkout';
+function submitCheckout(){
+  var name=document.getElementById('co-name').value.trim();
+  var email=document.getElementById('co-email').value.trim();
+  var phone=document.getElementById('co-phone').value.trim();
+  var addr=document.getElementById('co-addr').value.trim();
+  var instr=document.getElementById('co-instr').value.trim();
+  var time=document.getElementById('co-time').value.trim();
+  var comment=document.getElementById('co-comment').value.trim();
+  if(!name||!email||!phone||!addr){alert(T('req'));return;}
+  var btn=document.getElementById('co-btn');
+  btn.textContent=T('connecting'); btn.disabled=true;
+  fetch(CHECKOUT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({cart:cart,customerInfo:{name:name,email:email,phone:phone,address:addr,instructions:instr,time:time,comment:comment}})})
+  .then(function(r){return r.json();})
+  .then(function(d){if(d.url){localStorage.setItem('rc-lang',lang);window.location.href=d.url;}else{throw new Error(d.error||'Unknown error');}})
+  .catch(function(e){alert(T('err')+e.message);btn.textContent=T('lbl-cobtn');btn.disabled=false;});
+}
+
+function scrollToMenu(){ document.getElementById('menu-section').scrollIntoView({behavior:'smooth'}); }
+
+var _tt;
+function toast(msg){
+  var el=document.getElementById('toast'); el.textContent=msg; el.classList.add('show');
+  clearTimeout(_tt); _tt=setTimeout(function(){el.classList.remove('show');},2500);
+}
+
+var sl=localStorage.getItem('rc-lang')||'en';
+setLang(sl);
+</script>
+</body>
+</html>
