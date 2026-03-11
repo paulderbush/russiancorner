@@ -269,35 +269,6 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gbd);padding:36px 
   </div>
 </div>
 
-<!-- CHECKOUT -->
-<div class="ov" id="ov-checkout" onclick="if(event.target===this)closeMod('checkout')">
-  <div class="modal" style="max-width:480px">
-    <div class="mh"><div class="mt" id="lbl-co2">Checkout</div><button class="mx" onclick="closeMod('checkout')">✕</button></div>
-    <div class="ms"><div class="msl" id="lbl-yourdet">Your details</div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <input id="co-name" type="text" class="inp" placeholder="Name *">
-        <input id="co-email" type="email" class="inp" placeholder="Email *">
-        <input id="co-phone" type="tel" class="inp" placeholder="Phone *">
-      </div>
-    </div>
-    <div class="ms"><div class="msl" id="lbl-deldet">Delivery</div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <input id="co-addr" type="text" class="inp" placeholder="Delivery address *">
-        <input id="co-instr" type="text" class="inp" placeholder="Flat No., door code...">
-        <input id="co-time" type="text" class="inp" placeholder="Preferred delivery time">
-        <textarea id="co-comment" rows="2" class="inp" placeholder="Comment to order" style="resize:none"></textarea>
-      </div>
-    </div>
-    <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:13px 16px;margin-bottom:18px;font-size:12px;color:rgba(240,238,232,.6)">
-      🚚 <span id="lbl-delnote">Delivery £3.99 · Battersea, Nine Elms, Vauxhall</span>
-    </div>
-    <button id="co-btn" onclick="submitCheckout()" style="width:100%;padding:16px;border-radius:50px;border:none;cursor:pointer;font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;color:#fff;background:linear-gradient(135deg,#2d6cdf,#d93a50);box-shadow:0 8px 32px rgba(45,108,223,.3)">
-      <span id="lbl-cobtn">Proceed to payment →</span>
-    </button>
-    <div style="text-align:center;margin-top:10px;font-size:11px;color:rgba(240,238,232,.4)">🔒 <span id="lbl-cosec">Secure payment via Stripe</span></div>
-  </div>
-</div>
-
 <!-- CART DRAWER -->
 <div class="cov" id="cart-ov" onclick="toggleCart()"></div>
 <div class="cdr" id="cart-dr">
@@ -381,13 +352,6 @@ function setLang(l) {
     var el = document.getElementById(k);
     if (el && el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA') el.textContent = T(k);
   });
-  document.getElementById('co-name').placeholder = T('name-ph');
-  document.getElementById('co-email').placeholder = T('email-ph');
-  document.getElementById('co-phone').placeholder = T('phone-ph');
-  document.getElementById('co-addr').placeholder = T('addr-ph');
-  document.getElementById('co-instr').placeholder = T('instr-ph');
-  document.getElementById('co-time').placeholder = T('time-ph');
-  document.getElementById('co-comment').placeholder = T('comment-ph');
   localStorage.setItem('rc-lang', l);
   renderProducts();
   renderCart();
@@ -607,24 +571,17 @@ function chgQty(key, d) {
 }
 
 function toggleCart() { document.getElementById('cart-dr').classList.toggle('open'); document.getElementById('cart-ov').classList.toggle('open'); }
-function checkout() { if (!cart.length) return; openMod('checkout'); }
-
 var CHECKOUT_URL = 'https://russiancorner.vercel.app/api/checkout';
-function submitCheckout() {
-  var name = document.getElementById('co-name').value.trim();
-  var email = document.getElementById('co-email').value.trim();
-  var phone = document.getElementById('co-phone').value.trim();
-  var addr = document.getElementById('co-addr').value.trim();
-  var instr = document.getElementById('co-instr').value.trim();
-  var time = document.getElementById('co-time').value.trim();
-  var comment = document.getElementById('co-comment').value.trim();
-  if (!name || !email || !phone || !addr) { alert(T('req')); return; }
-  var btn = document.getElementById('co-btn');
-  btn.textContent = T('connecting'); btn.disabled = true;
-  fetch(CHECKOUT_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({cart:cart, customerInfo:{name:name, email:email, phone:phone, address:addr, instructions:instr, time:time, comment:comment}})})
+function checkout() {
+  if (!cart.length) return;
+  var btn = document.getElementById('pay-btn');
+  var origHtml = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span>' + T('connecting') + '</span>';
+  fetch(CHECKOUT_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({cart:cart, customerInfo:{}})})
     .then(function(r) { return r.json(); })
     .then(function(d) { if (d.url) { localStorage.setItem('rc-lang', lang); window.location.href = d.url; } else { throw new Error(d.error || 'Unknown error'); } })
-    .catch(function(e) { alert(T('err') + e.message); btn.textContent = T('lbl-cobtn'); btn.disabled = false; });
+    .catch(function(e) { alert(T('err') + e.message); btn.innerHTML = origHtml; btn.disabled = false; });
 }
 
 function scrollToMenu() { document.getElementById('menu-section').scrollIntoView({behavior:'smooth'}); }
