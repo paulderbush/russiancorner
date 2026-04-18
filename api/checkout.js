@@ -50,7 +50,6 @@ module.exports = async function handler(req, res) {
           currency: 'gbp',
           product_data: {
             name: 'Delivery',
-            description: 'Russian-speaking courier · Battersea / Nine Elms / Vauxhall',
           },
           unit_amount: 399,
         },
