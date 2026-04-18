@@ -172,7 +172,7 @@ module.exports = async function handler(req, res) {
 };
 
 // Vercel needs raw body for Stripe webhook signature verification
-export const config = {
+module.exports.config = {
   api: {
     bodyParser: false,
   },
