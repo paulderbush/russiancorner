@@ -295,6 +295,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gbd);padding:36px 
   </div>
   <div class="cits" id="cart-items"></div>
   <div class="cft">
+    <div id="cart-delivery-row" style="display:none;justify-content:space-between;font-size:13px;color:rgba(240,238,232,.6);margin-bottom:6px"><span id="cart-del-label">Delivery</span><span id="cart-del-amount">£3.99</span></div>
     <div class="ctot"><div class="ctlb" id="lbl-total">Total</div><div class="ctam" id="cart-total">£0.00</div></div>
     <button class="paybtn" id="pay-btn" onclick="checkout()" disabled><span id="lbl-pay2">Pay →</span></button>
     <div class="snote">🔒 <span id="lbl-sec">Secure payment</span> <span class="sbadge">stripe</span></div>
@@ -544,12 +545,24 @@ function addCart(id) {
   if (btn) { btn.classList.add('added'); btn.textContent = '✓'; setTimeout(function() { btn.classList.remove('added'); btn.textContent = '+'; }, 1500); }
 }
 
+var FREE_DELIVERY_THRESHOLD = 40;
+var DELIVERY_FEE = 3.99;
+
 function updateCart() {
   var tot = 0, cnt = 0;
   cart.forEach(function(i) { tot += i.pr * i.qty; cnt += i.qty; });
+  var freeDelivery = tot >= FREE_DELIVERY_THRESHOLD;
+  var grandTotal = tot + (freeDelivery ? 0 : (cart.length ? DELIVERY_FEE : 0));
   document.getElementById('cartBadge').textContent = cnt;
-  document.getElementById('cart-total').textContent = '£' + tot.toFixed(2);
+  document.getElementById('cart-total').textContent = cart.length ? '£' + grandTotal.toFixed(2) : '£0.00';
   document.getElementById('pay-btn').disabled = cart.length === 0;
+  var delRow = document.getElementById('cart-delivery-row');
+  if (cart.length) {
+    delRow.style.display = 'flex';
+    document.getElementById('cart-del-amount').textContent = freeDelivery ? (lang === 'ru' ? 'Бесплатно 🎉' : 'Free 🎉') : '£' + DELIVERY_FEE.toFixed(2);
+  } else {
+    delRow.style.display = 'none';
+  }
   renderCart();
 }
 

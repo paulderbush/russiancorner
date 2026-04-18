@@ -40,18 +40,23 @@ module.exports = async function handler(req, res) {
       quantity: item.qty,
     }));
 
-    // Add delivery fee as a line item
-    lineItems.push({
-      price_data: {
-        currency: 'gbp',
-        product_data: {
-          name: 'Delivery',
-          description: 'Russian-speaking courier · Battersea / Nine Elms / Vauxhall',
+    // Free delivery from £40
+    const cartTotal = cart.reduce((sum, item) => sum + (item.pr || item.price || 0) * item.qty, 0);
+    const freeDelivery = cartTotal >= 40;
+
+    if (!freeDelivery) {
+      lineItems.push({
+        price_data: {
+          currency: 'gbp',
+          product_data: {
+            name: 'Delivery',
+            description: 'Russian-speaking courier · Battersea / Nine Elms / Vauxhall',
+          },
+          unit_amount: 399,
         },
-        unit_amount: 399, // £3.99
-      },
-      quantity: 1,
-    });
+        quantity: 1,
+      });
+    }
 
     // Build order summary for metadata (stored in Stripe, sent via webhook)
     const orderSummary = cart.map(item =>
@@ -106,6 +111,7 @@ module.exports = async function handler(req, res) {
         delivery_time: customerInfo?.time || '',
         comment: customerInfo?.comment || '',
         item_count: cart.reduce((s, i) => s + i.qty, 0).toString(),
+        free_delivery: freeDelivery ? 'true' : 'false',
       },
 
       // Where to redirect after payment

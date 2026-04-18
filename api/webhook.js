@@ -39,7 +39,7 @@ async function sendOwnerEmail(session) {
     `<li style="margin-bottom:6px">${l}</li>`
   ).join('');
 
-  const deliveryFee = '£3.99';
+  const deliveryFee = session.metadata?.free_delivery === 'true' ? 'Free 🎉' : '£3.99';
   const total = (session.amount_total / 100).toFixed(2);
 
   const html = `
