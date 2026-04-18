@@ -131,6 +131,16 @@ ${orderLines}
   await sendTelegram(msg);
 }
 
+// ── Raw body reader ────────────────────────────────────────────────
+function getRawBody(req) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    req.on('data', chunk => chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk));
+    req.on('end', () => resolve(Buffer.concat(chunks)));
+    req.on('error', reject);
+  });
+}
+
 // ── Main webhook handler ───────────────────────────────────────────
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -142,8 +152,8 @@ module.exports = async function handler(req, res) {
 
   let event;
   try {
-    // Verify the request is genuinely from Stripe
-    event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+    const rawBody = await getRawBody(req);
+    event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
   } catch (err) {
     console.error('Webhook signature error:', err.message);
     return res.status(400).json({ error: `Webhook Error: ${err.message}` });
@@ -171,9 +181,3 @@ module.exports = async function handler(req, res) {
   return res.status(200).json({ received: true });
 };
 
-// Vercel needs raw body for Stripe webhook signature verification
-module.exports.config = {
-  api: {
-    bodyParser: false,
-  },
-};
