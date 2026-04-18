@@ -369,13 +369,6 @@ function setLang(l) {
     var el = document.getElementById(k);
     if (el && el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA') el.textContent = T(k);
   });
-  document.getElementById('co-name').placeholder = T('name-ph');
-  document.getElementById('co-email').placeholder = T('email-ph');
-  document.getElementById('co-phone').placeholder = T('phone-ph');
-  document.getElementById('co-addr').placeholder = T('addr-ph');
-  document.getElementById('co-instr').placeholder = T('instr-ph');
-  document.getElementById('co-time').placeholder = T('time-ph');
-  document.getElementById('co-comment').placeholder = T('comment-ph');
   localStorage.setItem('rc-lang', l);
   renderProducts();
   renderCart();
