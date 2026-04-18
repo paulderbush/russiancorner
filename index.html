@@ -165,7 +165,6 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gbd);padding:36px 
 @media(max-width:768px){
   nav{padding:10px 14px;gap:8px}
   .nlinks{display:none}
-  /* On mobile: hide cart text label, show icon + badge only */
   .cart-label{display:none}
   .ncart{padding:8px 10px;gap:4px}
   .langs .lb{padding:6px 10px;font-size:11px}
@@ -176,11 +175,69 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gbd);padding:36px 
   .modal{padding:22px;border-radius:20px}
   .kg{grid-template-columns:repeat(2,1fr)}
   .cdr{width:100%;max-width:100%}
+  .wa-label{display:none}
+  .hbtn-mob{display:flex}
 }
+@media(min-width:769px){
+  .hbtn-mob{display:none}
+}
+/* HAMBURGER MENU */
+.hbtn-mob{width:38px;height:38px;border-radius:50px;background:var(--gb);border:1px solid var(--gbd);color:var(--tx);font-size:18px;cursor:pointer;align-items:center;justify-content:center;flex-shrink:0}
+.mob-menu-ov{position:fixed;inset:0;z-index:500;background:#080d18;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.mob-menu-ov.open{opacity:1;pointer-events:all}
+.mob-menu-close{position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;background:var(--gb);border:1px solid var(--gbd);color:var(--tx);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mob-menu-links{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:48px}
+.mob-menu-links button{background:none;border:none;color:#fff;font-family:'Unbounded',sans-serif;font-size:20px;font-weight:600;cursor:pointer;padding:12px 0}
+.mob-menu-langs{display:flex;background:var(--gb);border:1px solid var(--gbd);border-radius:50px;overflow:hidden;position:absolute;bottom:40px}
+/* WHATSAPP BUTTON */
+.wa-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:50px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.3);color:#25d366;font-family:'Mulish',sans-serif;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;white-space:nowrap}
+.wa-btn:hover{background:rgba(37,211,102,.2)}
+.wa-btn svg{flex-shrink:0}
+/* LANG POPUP */
+.lang-popup-ov{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.8);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:20px}
+.lang-popup{background:rgba(12,18,35,.97);border:1px solid var(--gbd);border-radius:28px;padding:44px 40px;text-align:center;max-width:400px;width:100%}
+.lang-popup-title{font-family:'Unbounded',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px}
+.lang-popup-sub{font-size:14px;color:var(--tm);margin-bottom:32px;line-height:1.6}
+.lang-popup-btns{display:flex;gap:14px;justify-content:center}
+.lang-popup-btn{flex:1;padding:14px;border-radius:50px;border:1px solid var(--gbd);background:var(--gb);color:var(--tx);font-family:'Unbounded',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+.lang-popup-btn:hover{border-color:var(--gold);color:var(--gold)}
+/* MIN ORDER */
+.pay-min-note{text-align:center;font-size:11px;color:var(--red);margin-top:6px;display:none}
 </style>
 </head>
 <body>
 <div class="orbs"><div class="orb o1"></div><div class="orb o2"></div></div>
+
+<!-- LANGUAGE POPUP -->
+<div class="lang-popup-ov" id="lang-popup-ov">
+  <div class="lang-popup">
+    <div style="font-size:32px;margin-bottom:16px">🇷🇺</div>
+    <div class="lang-popup-title">Выберите язык · Choose language</div>
+    <div class="lang-popup-sub">Русский или English?</div>
+    <div class="lang-popup-btns">
+      <button class="lang-popup-btn" onclick="chooseLang('ru')">🇷🇺 Русский</button>
+      <button class="lang-popup-btn" onclick="chooseLang('en')">🇬🇧 English</button>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu-ov" id="mob-menu-ov">
+  <button class="mob-menu-close" onclick="closeMobMenu()">✕</button>
+  <div class="mob-menu-links">
+    <button onclick="closeMobMenu();scrollToMenu()" id="mm-menu">Menu</button>
+    <button onclick="closeMobMenu();openMod('about')" id="mm-about">About us</button>
+    <button onclick="closeMobMenu();openMod('delivery')" id="mm-delivery">Delivery &amp; payment</button>
+    <a class="wa-btn" href="https://wa.me/447414448476?text=Добрый%20день!%20Хочу%20оформить%20заказ" target="_blank" rel="noopener" style="margin-top:8px;justify-content:center">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+  <div class="mob-menu-langs">
+    <button class="lb" onclick="setLang('ru');closeMobMenu()">RU</button>
+    <button class="lb" onclick="setLang('en');closeMobMenu()">EN</button>
+  </div>
+</div>
 
 <nav>
   <div class="nlogo"><img src="/images/logo.png" alt="Russian Corner" onclick="window.scrollTo({top:0,behavior:'smooth'})"></div>
@@ -190,10 +247,15 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gbd);padding:36px 
     <button class="nl" id="n-delivery" onclick="openMod('delivery')">Delivery &amp; payment</button>
   </div>
   <div class="nright">
+    <a class="wa-btn" href="https://wa.me/447414448476?text=Добрый%20день!%20Хочу%20оформить%20заказ" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span class="wa-label">WhatsApp</span>
+    </a>
     <div class="langs">
       <button class="lb" onclick="setLang('ru')">RU</button>
       <button class="lb act" onclick="setLang('en')">EN</button>
     </div>
+    <button class="hbtn-mob" onclick="openMobMenu()">☰</button>
     <button class="ncart" onclick="toggleCart()">
       🛒 <span class="cart-label" id="lbl-cart">Cart</span>
       <div class="cbadge" id="cartBadge">0</div>
@@ -247,6 +309,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gbd);padding:36px 
     <div class="ms"><div class="msl" id="lbl-fee">Fee</div>
       <div class="irow"><span class="irl" id="lbl-courier">Courier delivery</span><span class="irv" style="color:var(--gold);font-family:'Unbounded',sans-serif">£3.99</span></div>
       <div class="irow"><span class="irl" id="lbl-min">Minimum order</span><span class="irv">£15.00</span></div>
+      <div class="irow"><span class="irl" id="lbl-freedel">Free delivery from</span><span class="irv" style="color:#2db865;font-weight:700">£40.00 🎉</span></div>
     </div>
     <div class="ms"><div class="msl" id="lbl-zones">Delivery zones</div>
       <div class="dzone"><span style="font-size:20px">📍</span><div><div style="font-size:13px;font-weight:600">Battersea Power Station</div><div style="font-size:11px;color:var(--tm)">SW8, SW11</div></div></div>
@@ -298,6 +361,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gbd);padding:36px 
     <div id="cart-delivery-row" style="display:none;justify-content:space-between;font-size:13px;color:rgba(240,238,232,.6);margin-bottom:6px"><span id="cart-del-label">Delivery</span><span id="cart-del-amount">£3.99</span></div>
     <div class="ctot"><div class="ctlb" id="lbl-total">Total</div><div class="ctam" id="cart-total">£0.00</div></div>
     <button class="paybtn" id="pay-btn" onclick="checkout()" disabled><span id="lbl-pay2">Pay →</span></button>
+    <div class="pay-min-note" id="pay-min-note">Minimum order £15.00</div>
     <div class="snote">🔒 <span id="lbl-sec">Secure payment</span> <span class="sbadge">stripe</span></div>
   </div>
 </div>
@@ -312,7 +376,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gbd);padding:36px 
 var lang = 'en';
 var TR = {
   en: {
-    'n-menu':'Menu','n-about':'About us','n-delivery':'Delivery & payment',
+    'n-menu':'Menu','n-about':'About us','n-delivery':'Delivery & payment','lbl-freedel':'Free delivery from',
     'lbl-cart':'Cart','lbl-carttitle':'Cart','lbl-total':'Total','lbl-pay2':'Pay →','lbl-sec':'Secure payment',
     'lbl-soon':'✦ COMING SOON','lbl-h1':'Taste of Russia','lbl-h2':'at your door',
     'lbl-hsub':'Living in London and missing real home-style Russian food? Great news for residents of Battersea, Nine Elms and Vauxhall. Russian Corner cooks fresh every day. Delivered by Russian-speaking couriers. All dishes made without onion.',
@@ -336,7 +400,7 @@ var TR = {
     'name-ph':'Name *','email-ph':'Email *','phone-ph':'Phone *','addr-ph':'Delivery address *','instr-ph':'Flat No., door code...','time-ph':'Preferred delivery time','comment-ph':'Comment to order'
   },
   ru: {
-    'n-menu':'Меню','n-about':'О нас','n-delivery':'Доставка и оплата',
+    'n-menu':'Меню','n-about':'О нас','n-delivery':'Доставка и оплата','lbl-freedel':'Бесплатная доставка от',
     'lbl-cart':'Корзина','lbl-carttitle':'Корзина','lbl-total':'Итого','lbl-pay2':'Оплатить →','lbl-sec':'Безопасная оплата',
     'lbl-soon':'✦ СКОРО ОТКРЫТИЕ','lbl-h1':'Вкус России','lbl-h2':'у вас дома',
     'lbl-hsub':'Живёте в Лондоне и скучаете по домашней русской еде? Отличные новости для жителей Battersea, Nine Elms и Vauxhall. Russian Corner готовит каждый день. Доставляют русскоговорящие курьеры. Все блюда без лука.',
@@ -547,15 +611,20 @@ function addCart(id) {
 
 var FREE_DELIVERY_THRESHOLD = 40;
 var DELIVERY_FEE = 3.99;
+var MIN_ORDER = 15;
 
 function updateCart() {
   var tot = 0, cnt = 0;
   cart.forEach(function(i) { tot += i.pr * i.qty; cnt += i.qty; });
   var freeDelivery = tot >= FREE_DELIVERY_THRESHOLD;
+  var meetsMin = tot >= MIN_ORDER || cart.length === 0;
   var grandTotal = tot + (freeDelivery ? 0 : (cart.length ? DELIVERY_FEE : 0));
   document.getElementById('cartBadge').textContent = cnt;
   document.getElementById('cart-total').textContent = cart.length ? '£' + grandTotal.toFixed(2) : '£0.00';
-  document.getElementById('pay-btn').disabled = cart.length === 0;
+  document.getElementById('pay-btn').disabled = cart.length === 0 || !meetsMin;
+  var minNote = document.getElementById('pay-min-note');
+  minNote.style.display = (cart.length && !meetsMin) ? 'block' : 'none';
+  if (cart.length && !meetsMin) minNote.textContent = lang === 'ru' ? 'Минимальный заказ £15.00' : 'Minimum order £15.00';
   var delRow = document.getElementById('cart-delivery-row');
   if (cart.length) {
     delRow.style.display = 'flex';
@@ -564,6 +633,15 @@ function updateCart() {
     delRow.style.display = 'none';
   }
   renderCart();
+}
+
+function openMobMenu() { document.getElementById('mob-menu-ov').classList.add('open'); }
+function closeMobMenu() { document.getElementById('mob-menu-ov').classList.remove('open'); }
+
+function chooseLang(l) {
+  document.getElementById('lang-popup-ov').style.display = 'none';
+  localStorage.setItem('rc-lang-chosen', '1');
+  setLang(l);
 }
 
 function renderCart() {
@@ -623,6 +701,18 @@ function toast(msg) { var el = document.getElementById('toast'); el.textContent 
 // Init
 var sl = localStorage.getItem('rc-lang') || 'en';
 setLang(sl);
+
+// Mobile menu labels
+document.getElementById('mm-menu').textContent = sl === 'ru' ? 'Меню' : 'Menu';
+document.getElementById('mm-about').textContent = sl === 'ru' ? 'О нас' : 'About us';
+document.getElementById('mm-delivery').textContent = sl === 'ru' ? 'Доставка и оплата' : 'Delivery & payment';
+
+// Language popup — show only on first visit
+if (!localStorage.getItem('rc-lang-chosen')) {
+  document.getElementById('lang-popup-ov').style.display = 'flex';
+} else {
+  document.getElementById('lang-popup-ov').style.display = 'none';
+}
 
 // Show success popup if returning from Stripe
 if (window.location.search.indexOf('payment=success') !== -1) {
