@@ -64,8 +64,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 40px;display:fl
 .pc:hover .pimg img{transform:scale(1.04)}
 .pph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:60px}
 .ptag{position:absolute;top:12px;right:12px;padding:4px 12px;border-radius:50px;font-size:10px;font-weight:700;backdrop-filter:blur(10px)}
-.ptag.hit{background:rgba(201,168,76,.25);color:var(--gold);border:1px solid rgba(201,168,76,.4)}
-.ptag.new{background:rgba(45,108,223,.25);color:#90b8ff;border:1px solid rgba(45,108,223,.4)}
+.ptag.new{background:rgba(45,108,223,.25);color:#fff;border:1px solid rgba(45,108,223,.4)}
 .pb{padding:18px;flex:1;display:flex;flex-direction:column}
 .pname{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;margin-bottom:6px;line-height:1.4}
 .pdesc{font-size:12px;color:var(--tm);line-height:1.65;margin-bottom:14px;flex:1}
@@ -397,7 +396,6 @@ var PRODS = [
   {id:1, img:'/images/olivier.jpg', nameRu:'Салат Оливье', nameEn:'Olivier Salad',
    descRu:'Классический рецепт с варёной колбасой, картошкой, горошком и майонезом. Без лука.',
    descEn:'Classic recipe with sausage, potato, peas and mayo. No onion.',
-   tag:'hit', tagRu:'Хит', tagEn:'Hit',
    vars:[{ru:'200 г',en:'200 g',p:13.99},{ru:'500 г',en:'500 g',p:24.99},{ru:'1 кг',en:'1 kg',p:43.99}],
    con:true, sv:0, sc:false, sauce:null,
    nu:{ru:{i:'Картофель, яйца, колбаса варёная, морковь, горошек, огурец маринованный, майонез',a:'Яйца, горчица (в майонезе)',k:{c:180,p:6,f:14,b:10}},
@@ -421,7 +419,6 @@ var PRODS = [
   {id:4, img:'/images/dumplings.jpg', nameRu:'Домашние пельмени', nameEn:'Homemade Pelmeni',
    descRu:'Свинина+говядина, лепим вручную. Продаются замороженными — инструкция в комплекте.',
    descEn:'Pork & beef, handmade daily. Sold frozen — cooking instructions included.',
-   tag:'hit', tagRu:'Хит', tagEn:'Hit',
    vars:[{ru:'500 г',en:'500 g',p:29.99},{ru:'1 кг',en:'1 kg',p:54.99},{ru:'2 кг',en:'2 kg',p:99.99}],
    con:false, sv:0, sc:false, sauce:null,
    nu:{ru:{i:'Тесто (мука, вода, яйцо, соль), фарш (свинина 50%, говядина 50%), перец, соль',a:'Глютен, яйца',k:{c:245,p:12,f:11,b:24},
