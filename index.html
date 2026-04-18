@@ -380,14 +380,14 @@ var PRODS = [
    descRu:'Классический рецепт с варёной колбасой, картошкой, горошком и майонезом. Без лука.',
    descEn:'Classic recipe with sausage, potato, peas and mayo. No onion.',
    vars:[{ru:'200 г',en:'200 g',p:13.99},{ru:'500 г',en:'500 g',p:24.99},{ru:'1 кг',en:'1 kg',p:43.99}],
-   con:true, sv:0, sc:false, sauce:null,
+   con:true, sv:0, sc:false, sauces_sel:[],
    nu:{ru:{i:'Картофель, яйца, колбаса варёная, морковь, горошек, огурец маринованный, майонез',a:'Яйца, горчица (в майонезе)',k:{c:180,p:6,f:14,b:10}},
        en:{i:'Potato, eggs, cooked sausage, carrot, peas, pickled cucumber, mayo',a:'Eggs, mustard (in mayo)',k:{c:180,p:6,f:14,b:10}}}},
   {id:2, img:'/images/crab.jpg', nameRu:'Крабовый салат', nameEn:'Crab Salad',
    descRu:'С крабовыми палочками, кукурузой, яйцом и майонезом. Без лука.',
    descEn:'With crab sticks, corn, egg and mayo. No onion.',
    tag:null, vars:[{ru:'200 г',en:'200 g',p:13.99},{ru:'500 г',en:'500 g',p:24.99},{ru:'1 кг',en:'1 kg',p:43.99}],
-   con:true, sv:0, sc:false, sauce:null,
+   con:true, sv:0, sc:false, sauces_sel:[],
    nu:{ru:{i:'Крабовые палочки (сурими), кукуруза, яйца, майонез',a:'Рыба (сурими), яйца, горчица, глютен',k:{c:155,p:7,f:10,b:9}},
        en:{i:'Crab sticks (surimi), corn, eggs, mayo',a:'Fish (surimi), eggs, mustard, gluten',k:{c:155,p:7,f:10,b:9}}}},
   {id:3, img:'/images/blini.jpg', nameRu:'Блины', nameEn:'Blini',
@@ -395,7 +395,7 @@ var PRODS = [
    descEn:'Thin homemade pancakes. Served with your choice of sauce.',
    tag:'new', tagRu:'Новинка', tagEn:'New',
    vars:[{ru:'2 шт.',en:'2 pcs',p:9.99},{ru:'4 шт.',en:'4 pcs',p:18.99},{ru:'8 шт.',en:'8 pcs',p:32.99}],
-   con:true, sv:0, sc:false, sauce:null,
+   con:true, sv:0, sc:false, sauces_sel:[],
    sauces:[{ru:'Со сметаной',en:'Sour cream',p:0.99},{ru:'Со сгущёнкой',en:'Condensed milk',p:0.99},{ru:'С абрикосовым вареньем',en:'Apricot jam',p:0.99}],
    nu:{ru:{i:'Мука пшеничная, молоко, яйца, масло сливочное, сахар, соль',a:'Глютен, яйца, молоко',k:{c:215,p:6,f:9,b:28}},
        en:{i:'Wheat flour, milk, eggs, butter, sugar, salt',a:'Gluten (wheat), eggs, milk',k:{c:215,p:6,f:9,b:28}}}},
@@ -403,7 +403,7 @@ var PRODS = [
    descRu:'Свинина+говядина, лепим вручную. Продаются замороженными — инструкция в комплекте.',
    descEn:'Pork & beef, handmade daily. Sold frozen — cooking instructions included.',
    vars:[{ru:'500 г',en:'500 g',p:29.99},{ru:'1 кг',en:'1 kg',p:54.99},{ru:'2 кг',en:'2 kg',p:99.99}],
-   con:false, sv:0, sc:false, sauce:null,
+   con:false, sv:0, sc:false, sauces_sel:[],
    nu:{ru:{i:'Тесто (мука, вода, яйцо, соль), фарш (свинина 50%, говядина 50%), перец, соль',a:'Глютен, яйца',k:{c:245,p:12,f:11,b:24},
           x:'Настоящие ценители пельменей знают: они должны быть с пылу с жару! Поэтому мы продаём их замороженными — так они сохраняют весь вкус. В каждый заказ вкладываем инструкцию как сварить вкусно.'},
        en:{i:'Dough (flour, water, egg, salt), filling (50% pork, 50% beef), pepper, salt',a:'Gluten (wheat), eggs',k:{c:245,p:12,f:11,b:24},
@@ -412,7 +412,7 @@ var PRODS = [
    descRu:'Нежный домашний яблочный пирог. Один кусочек или целый пирог.',
    descEn:'Light homemade apple cake. One slice or the whole cake.',
    tag:null, vars:[{ru:'1 кусочек',en:'1 slice',p:9.99},{ru:'Целый пирог (8 кусочков)',en:'Whole cake (8 slices)',p:69.99}],
-   con:false, sv:0, sc:false, sauce:null,
+   con:false, sv:0, sc:false, sauces_sel:[],
    nu:{ru:{i:'Яблоки, яйца, сахар, мука пшеничная, масло сливочное, ваниль, разрыхлитель, корица',a:'Глютен, яйца, молоко',k:{c:210,p:4,f:7,b:33}},
        en:{i:'Apples, eggs, sugar, wheat flour, butter, vanilla, baking powder, cinnamon',a:'Gluten (wheat), eggs, milk (butter)',k:{c:210,p:4,f:7,b:33}}}}
 ];
@@ -426,7 +426,7 @@ function renderProducts() {
     var nm = lang === 'ru' ? p.nameRu : p.nameEn;
     var ds = lang === 'ru' ? p.descRu : p.descEn;
     var v = p.vars[p.sv];
-    var tot = v.p + (p.sc ? 4.99 : 0) + (p.sauces && p.sauce !== null ? p.sauces[p.sauce].p : 0);
+    var tot = v.p + (p.sc ? 4.99 : 0) + (p.sauces ? (p.sauces_sel||[]).reduce(function(s,i){return s+p.sauces[i].p;},0) : 0);
 
     var card = document.createElement('div'); card.className = 'pc';
 
@@ -459,9 +459,9 @@ function renderProducts() {
       var sl = document.createElement('div'); sl.className = 'slabel'; sl.textContent = T('slabel'); sw.appendChild(sl);
       var so = document.createElement('div'); so.className = 'sopts';
       p.sauces.forEach(function(s, i) {
-        var b = document.createElement('button'); b.className = 'sbtn' + (p.sauce === i ? ' sel' : '');
+        var b = document.createElement('button'); b.className = 'sbtn' + ((p.sauces_sel||[]).indexOf(i) !== -1 ? ' sel' : '');
         b.textContent = lang === 'ru' ? s.ru : s.en;
-        (function(pid, idx) { b.onclick = function() { var pr = getP(pid); pr.sauce = pr.sauce === idx ? null : idx; renderProducts(); }; })(p.id, i);
+        (function(pid, idx) { b.onclick = function() { var pr = getP(pid); if (!pr.sauces_sel) pr.sauces_sel = []; var pos = pr.sauces_sel.indexOf(idx); if (pos === -1) pr.sauces_sel.push(idx); else pr.sauces_sel.splice(pos, 1); renderProducts(); }; })(p.id, i);
         so.appendChild(b);
       }); sw.appendChild(so); bd.appendChild(sw);
     }
@@ -535,8 +535,8 @@ function addCart(id) {
   var vl = lang === 'ru' ? v.ru : v.en;
   var pr = v.p, meta = [vl];
   if (p.sc) { pr += 4.99; meta.push(lang === 'ru' ? '+контейнер' : '+container'); }
-  if (p.sauces && p.sauce !== null) { var s = p.sauces[p.sauce]; pr += s.p; meta.push(lang === 'ru' ? s.ru : s.en); }
-  var key = id + '-' + p.sv + '-' + p.sc + '-' + p.sauce;
+  if (p.sauces && p.sauces_sel && p.sauces_sel.length) { p.sauces_sel.forEach(function(si){ var s=p.sauces[si]; pr+=s.p; meta.push(lang==='ru'?s.ru:s.en); }); }
+  var key = id + '-' + p.sv + '-' + p.sc + '-' + (p.sauces_sel||[]).join(',');
   var ex = null; cart.forEach(function(i) { if (i.key === key) ex = i; });
   if (ex) { ex.qty++; } else { cart.push({key:key, id:id, qty:1, name:lang==='ru'?p.nameRu:p.nameEn, img:p.img, meta:meta.join(' · '), pr:pr}); }
   updateCart();
