@@ -109,8 +109,8 @@ module.exports = async function handler(req, res) {
       },
 
       // Where to redirect after payment
-      success_url: `${process.env.SITE_URL || 'https://russiancorner.vercel.app'}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.SITE_URL || 'https://russiancorner.vercel.app'}`,
+      success_url: `${process.env.SITE_URL || 'https://russiancorner.vercel.app'}/?payment=success&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.SITE_URL || 'https://russiancorner.vercel.app'}/`,
     });
 
     return res.status(200).json({ url: session.url });
