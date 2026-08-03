@@ -101,7 +101,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 40px;display:fl
 /* MODALS */
 .ov{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:20px}
 .ov.open{opacity:1;pointer-events:all}
-.modal{background:rgba(12,18,35,.97);border:1px solid var(--gbd);border-radius:28px;width:100%;max-width:560px;max-height:88vh;overflow-y:auto;padding:36px;transform:scale(.94) translateY(20px);transition:transform .35s cubic-bezier(.23,1,.32,1)}
+.modal{position:relative;background:rgba(12,18,35,.97);border:1px solid var(--gbd);border-radius:28px;width:100%;max-width:560px;max-height:88vh;overflow-y:auto;padding:36px;transform:scale(.94) translateY(20px);transition:transform .35s cubic-bezier(.23,1,.32,1)}
 .ov.open .modal{transform:scale(1) translateY(0)}
 .mh{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:26px}
 .mt{font-family:'Unbounded',sans-serif;font-size:18px;font-weight:700;line-height:1.3}
@@ -165,7 +165,6 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gbd);padding:36px 
 @media(max-width:768px){
   nav{padding:10px 14px;gap:8px}
   .nlinks{display:none}
-  /* On mobile: hide cart text label, show icon + badge only */
   .cart-label{display:none}
   .ncart{padding:8px 10px;gap:4px}
   .langs .lb{padding:6px 10px;font-size:11px}
@@ -176,11 +175,71 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gbd);padding:36px 
   .modal{padding:22px;border-radius:20px}
   .kg{grid-template-columns:repeat(2,1fr)}
   .cdr{width:100%;max-width:100%}
+  .wa-label{display:none}
+  .nav-wa{display:none!important}
+  .langs{display:none!important}
+  .hbtn-mob{display:flex}
 }
+@media(min-width:769px){
+  .hbtn-mob{display:none}
+}
+/* HAMBURGER MENU */
+.hbtn-mob{width:38px;height:38px;border-radius:50px;background:var(--gb);border:1px solid var(--gbd);color:var(--tx);font-size:18px;cursor:pointer;align-items:center;justify-content:center;flex-shrink:0}
+.mob-menu-ov{position:fixed;inset:0;z-index:500;background:#080d18;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.mob-menu-ov.open{opacity:1;pointer-events:all}
+.mob-menu-close{position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;background:var(--gb);border:1px solid var(--gbd);color:var(--tx);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mob-menu-links{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:48px}
+.mob-menu-links button{background:none;border:none;color:#fff;font-family:'Unbounded',sans-serif;font-size:20px;font-weight:600;cursor:pointer;padding:12px 0}
+.mob-menu-langs{display:flex;background:var(--gb);border:1px solid var(--gbd);border-radius:50px;overflow:hidden;position:absolute;bottom:40px}
+/* WHATSAPP BUTTON */
+.wa-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:50px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.3);color:#25d366;font-family:'Mulish',sans-serif;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;white-space:nowrap}
+.wa-btn:hover{background:rgba(37,211,102,.2)}
+.wa-btn svg{flex-shrink:0}
+/* LANG POPUP */
+.lang-popup-ov{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.8);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:20px}
+.lang-popup{background:rgba(12,18,35,.97);border:1px solid var(--gbd);border-radius:28px;padding:44px 40px;text-align:center;max-width:400px;width:100%}
+.lang-popup-title{font-family:'Unbounded',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px}
+.lang-popup-sub{font-size:14px;color:var(--tm);margin-bottom:32px;line-height:1.6}
+.lang-popup-btns{display:flex;gap:14px;justify-content:center}
+.lang-popup-btn{flex:1;padding:14px;border-radius:50px;border:1px solid var(--gbd);background:var(--gb);color:var(--tx);font-family:'Unbounded',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+.lang-popup-btn:hover{border-color:var(--gold);color:var(--gold)}
+/* MIN ORDER */
+.pay-min-note{text-align:center;font-size:11px;color:var(--red);margin-top:6px;display:none}
 </style>
 </head>
 <body>
 <div class="orbs"><div class="orb o1"></div><div class="orb o2"></div></div>
+
+<!-- LANGUAGE POPUP -->
+<div class="lang-popup-ov" id="lang-popup-ov">
+  <div class="lang-popup">
+    <div style="font-size:32px;margin-bottom:16px">🇷🇺</div>
+    <div class="lang-popup-title">Выберите язык · Choose language</div>
+    <div class="lang-popup-sub">Русский или English?</div>
+    <div class="lang-popup-btns">
+      <button class="lang-popup-btn" onclick="chooseLang('ru')">🇷🇺 Русский</button>
+      <button class="lang-popup-btn" onclick="chooseLang('en')">🇬🇧 English</button>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu-ov" id="mob-menu-ov">
+  <button class="mob-menu-close" onclick="closeMobMenu()">✕</button>
+  <div class="mob-menu-links">
+    <button onclick="closeMobMenu();scrollToMenu()" id="mm-menu">Menu</button>
+    <button onclick="closeMobMenu();openMod('about')" id="mm-about">About us</button>
+    <button onclick="closeMobMenu();openMod('delivery')" id="mm-delivery">Delivery &amp; payment</button>
+    <a class="wa-btn" href="https://wa.me/447414448476?text=Добрый%20день!%20Хочу%20оформить%20заказ" target="_blank" rel="noopener" style="margin-top:8px;justify-content:center">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+  <div class="mob-menu-langs">
+    <button class="lb" onclick="setLang('ru');closeMobMenu()">RU</button>
+    <button class="lb" onclick="setLang('en');closeMobMenu()">EN</button>
+  </div>
+</div>
 
 <nav>
   <div class="nlogo"><img src="/images/logo.png" alt="Russian Corner" onclick="window.scrollTo({top:0,behavior:'smooth'})"></div>
@@ -190,10 +249,15 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gbd);padding:36px 
     <button class="nl" id="n-delivery" onclick="openMod('delivery')">Delivery &amp; payment</button>
   </div>
   <div class="nright">
+    <a class="wa-btn nav-wa" href="https://wa.me/447414448476?text=Добрый%20день!%20Хочу%20оформить%20заказ" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span class="wa-label">WhatsApp</span>
+    </a>
     <div class="langs">
       <button class="lb" onclick="setLang('ru')">RU</button>
       <button class="lb act" onclick="setLang('en')">EN</button>
     </div>
+    <button class="hbtn-mob" onclick="openMobMenu()">☰</button>
     <button class="ncart" onclick="toggleCart()">
       🛒 <span class="cart-label" id="lbl-cart">Cart</span>
       <div class="cbadge" id="cartBadge">0</div>
@@ -247,6 +311,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gbd);padding:36px 
     <div class="ms"><div class="msl" id="lbl-fee">Fee</div>
       <div class="irow"><span class="irl" id="lbl-courier">Courier delivery</span><span class="irv" style="color:var(--gold);font-family:'Unbounded',sans-serif">£3.99</span></div>
       <div class="irow"><span class="irl" id="lbl-min">Minimum order</span><span class="irv">£15.00</span></div>
+      <div class="irow"><span class="irl" id="lbl-freedel">Free delivery from</span><span class="irv" style="color:#2db865;font-weight:700">£40.00 🎉</span></div>
     </div>
     <div class="ms"><div class="msl" id="lbl-zones">Delivery zones</div>
       <div class="dzone"><span style="font-size:20px">📍</span><div><div style="font-size:13px;font-weight:600">Battersea Power Station</div><div style="font-size:11px;color:var(--tm)">SW8, SW11</div></div></div>
@@ -268,32 +333,21 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gbd);padding:36px 
   </div>
 </div>
 
-<!-- CHECKOUT -->
-<div class="ov" id="ov-checkout" onclick="if(event.target===this)closeMod('checkout')">
-  <div class="modal" style="max-width:480px">
-    <div class="mh"><div class="mt" id="lbl-co2">Checkout</div><button class="mx" onclick="closeMod('checkout')">✕</button></div>
-    <div class="ms"><div class="msl" id="lbl-yourdet">Your details</div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <input id="co-name" type="text" class="inp" placeholder="Name *">
-        <input id="co-email" type="email" class="inp" placeholder="Email *">
-        <input id="co-phone" type="tel" class="inp" placeholder="Phone *">
-      </div>
+<!-- SUCCESS POPUP -->
+<div class="ov" id="ov-success">
+  <div class="modal" style="max-width:440px;text-align:center">
+    <button class="mx" onclick="closeSuccess()" style="position:absolute;top:20px;right:20px">✕</button>
+    <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,rgba(46,160,67,.3),rgba(46,160,67,.1));border:1px solid rgba(46,160,67,.4);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 24px">✓</div>
+    <div style="font-family:'Unbounded',sans-serif;font-size:11px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px">Russian Corner</div>
+    <div class="mt" id="suc-title" style="margin-bottom:14px">Order confirmed!</div>
+    <p id="suc-sub" style="font-size:14px;color:rgba(240,238,232,.6);line-height:1.75;margin-bottom:28px">Thank you! Your payment has been received. We are already preparing your order and will be in touch shortly.</p>
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px 20px;text-align:left;margin-bottom:24px">
+      <div style="font-size:10px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px" id="suc-next">What happens next</div>
+      <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="font-size:16px">📧</span><span style="font-size:13px;color:rgba(240,238,232,.7)" id="suc-s1">A receipt has been sent to your email by Stripe.</span></div>
+      <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="font-size:16px">📞</span><span style="font-size:13px;color:rgba(240,238,232,.7)" id="suc-s2">Our courier will call or text you to confirm delivery.</span></div>
+      <div style="display:flex;gap:10px;padding:8px 0"><span style="font-size:16px">🍽</span><span style="font-size:13px;color:rgba(240,238,232,.7)" id="suc-s3">All dishes are prepared fresh on the day of delivery.</span></div>
     </div>
-    <div class="ms"><div class="msl" id="lbl-deldet">Delivery</div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <input id="co-addr" type="text" class="inp" placeholder="Delivery address *">
-        <input id="co-instr" type="text" class="inp" placeholder="Flat No., door code...">
-        <input id="co-time" type="text" class="inp" placeholder="Preferred delivery time">
-        <textarea id="co-comment" rows="2" class="inp" placeholder="Comment to order" style="resize:none"></textarea>
-      </div>
-    </div>
-    <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:13px 16px;margin-bottom:18px;font-size:12px;color:rgba(240,238,232,.6)">
-      🚚 <span id="lbl-delnote">Delivery £3.99 · Battersea, Nine Elms, Vauxhall</span>
-    </div>
-    <button id="co-btn" onclick="submitCheckout()" style="width:100%;padding:16px;border-radius:50px;border:none;cursor:pointer;font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;color:#fff;background:linear-gradient(135deg,#2d6cdf,#d93a50);box-shadow:0 8px 32px rgba(45,108,223,.3)">
-      <span id="lbl-cobtn">Proceed to payment →</span>
-    </button>
-    <div style="text-align:center;margin-top:10px;font-size:11px;color:rgba(240,238,232,.4)">🔒 <span id="lbl-cosec">Secure payment via Stripe</span></div>
+    <button onclick="closeSuccess()" style="width:100%;padding:14px;border-radius:50px;border:none;cursor:pointer;font-family:'Unbounded',sans-serif;font-size:11px;font-weight:600;color:#fff;background:linear-gradient(135deg,#2d6cdf,#d93a50)" id="suc-btn">Back to menu</button>
   </div>
 </div>
 
@@ -306,8 +360,10 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gbd);padding:36px 
   </div>
   <div class="cits" id="cart-items"></div>
   <div class="cft">
+    <div id="cart-delivery-row" style="display:none;justify-content:space-between;font-size:13px;color:rgba(240,238,232,.6);margin-bottom:6px"><span id="cart-del-label">Delivery</span><span id="cart-del-amount">£3.99</span></div>
     <div class="ctot"><div class="ctlb" id="lbl-total">Total</div><div class="ctam" id="cart-total">£0.00</div></div>
     <button class="paybtn" id="pay-btn" onclick="checkout()" disabled><span id="lbl-pay2">Pay →</span></button>
+    <div class="pay-min-note" id="pay-min-note">Minimum order £15.00</div>
     <div class="snote">🔒 <span id="lbl-sec">Secure payment</span> <span class="sbadge">stripe</span></div>
   </div>
 </div>
@@ -322,7 +378,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gbd);padding:36px 
 var lang = 'en';
 var TR = {
   en: {
-    'n-menu':'Menu','n-about':'About us','n-delivery':'Delivery & payment',
+    'n-menu':'Menu','n-about':'About us','n-delivery':'Delivery & payment','lbl-freedel':'Free delivery from',
     'lbl-cart':'Cart','lbl-carttitle':'Cart','lbl-total':'Total','lbl-pay2':'Pay →','lbl-sec':'Secure payment',
     'lbl-soon':'✦ COMING SOON','lbl-h1':'Taste of Russia','lbl-h2':'at your door',
     'lbl-hsub':'Living in London and missing real home-style Russian food? Great news for residents of Battersea, Nine Elms and Vauxhall. Russian Corner cooks fresh every day. Delivered by Russian-speaking couriers. All dishes made without onion.',
@@ -346,7 +402,7 @@ var TR = {
     'name-ph':'Name *','email-ph':'Email *','phone-ph':'Phone *','addr-ph':'Delivery address *','instr-ph':'Flat No., door code...','time-ph':'Preferred delivery time','comment-ph':'Comment to order'
   },
   ru: {
-    'n-menu':'Меню','n-about':'О нас','n-delivery':'Доставка и оплата',
+    'n-menu':'Меню','n-about':'О нас','n-delivery':'Доставка и оплата','lbl-freedel':'Бесплатная доставка от',
     'lbl-cart':'Корзина','lbl-carttitle':'Корзина','lbl-total':'Итого','lbl-pay2':'Оплатить →','lbl-sec':'Безопасная оплата',
     'lbl-soon':'✦ СКОРО ОТКРЫТИЕ','lbl-h1':'Вкус России','lbl-h2':'у вас дома',
     'lbl-hsub':'Живёте в Лондоне и скучаете по домашней русской еде? Отличные новости для жителей Battersea, Nine Elms и Vauxhall. Russian Corner готовит каждый день. Доставляют русскоговорящие курьеры. Все блюда без лука.',
@@ -380,13 +436,6 @@ function setLang(l) {
     var el = document.getElementById(k);
     if (el && el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA') el.textContent = T(k);
   });
-  document.getElementById('co-name').placeholder = T('name-ph');
-  document.getElementById('co-email').placeholder = T('email-ph');
-  document.getElementById('co-phone').placeholder = T('phone-ph');
-  document.getElementById('co-addr').placeholder = T('addr-ph');
-  document.getElementById('co-instr').placeholder = T('instr-ph');
-  document.getElementById('co-time').placeholder = T('time-ph');
-  document.getElementById('co-comment').placeholder = T('comment-ph');
   localStorage.setItem('rc-lang', l);
   renderProducts();
   renderCart();
@@ -397,14 +446,14 @@ var PRODS = [
    descRu:'Классический рецепт с варёной колбасой, картошкой, горошком и майонезом. Без лука.',
    descEn:'Classic recipe with sausage, potato, peas and mayo. No onion.',
    vars:[{ru:'200 г',en:'200 g',p:13.99},{ru:'500 г',en:'500 g',p:24.99},{ru:'1 кг',en:'1 kg',p:43.99}],
-   con:true, sv:0, sc:false, sauce:null,
+   con:true, sv:0, sc:false, sauces_sel:[],
    nu:{ru:{i:'Картофель, яйца, колбаса варёная, морковь, горошек, огурец маринованный, майонез',a:'Яйца, горчица (в майонезе)',k:{c:180,p:6,f:14,b:10}},
        en:{i:'Potato, eggs, cooked sausage, carrot, peas, pickled cucumber, mayo',a:'Eggs, mustard (in mayo)',k:{c:180,p:6,f:14,b:10}}}},
   {id:2, img:'/images/crab.jpg', nameRu:'Крабовый салат', nameEn:'Crab Salad',
    descRu:'С крабовыми палочками, кукурузой, яйцом и майонезом. Без лука.',
    descEn:'With crab sticks, corn, egg and mayo. No onion.',
    tag:null, vars:[{ru:'200 г',en:'200 g',p:13.99},{ru:'500 г',en:'500 g',p:24.99},{ru:'1 кг',en:'1 kg',p:43.99}],
-   con:true, sv:0, sc:false, sauce:null,
+   con:true, sv:0, sc:false, sauces_sel:[],
    nu:{ru:{i:'Крабовые палочки (сурими), кукуруза, яйца, майонез',a:'Рыба (сурими), яйца, горчица, глютен',k:{c:155,p:7,f:10,b:9}},
        en:{i:'Crab sticks (surimi), corn, eggs, mayo',a:'Fish (surimi), eggs, mustard, gluten',k:{c:155,p:7,f:10,b:9}}}},
   {id:3, img:'/images/blini.jpg', nameRu:'Блины', nameEn:'Blini',
@@ -412,7 +461,7 @@ var PRODS = [
    descEn:'Thin homemade pancakes. Served with your choice of sauce.',
    tag:'new', tagRu:'Новинка', tagEn:'New',
    vars:[{ru:'2 шт.',en:'2 pcs',p:9.99},{ru:'4 шт.',en:'4 pcs',p:18.99},{ru:'8 шт.',en:'8 pcs',p:32.99}],
-   con:true, sv:0, sc:false, sauce:null,
+   con:true, sv:0, sc:false, sauces_sel:[],
    sauces:[{ru:'Со сметаной',en:'Sour cream',p:0.99},{ru:'Со сгущёнкой',en:'Condensed milk',p:0.99},{ru:'С абрикосовым вареньем',en:'Apricot jam',p:0.99}],
    nu:{ru:{i:'Мука пшеничная, молоко, яйца, масло сливочное, сахар, соль',a:'Глютен, яйца, молоко',k:{c:215,p:6,f:9,b:28}},
        en:{i:'Wheat flour, milk, eggs, butter, sugar, salt',a:'Gluten (wheat), eggs, milk',k:{c:215,p:6,f:9,b:28}}}},
@@ -420,7 +469,7 @@ var PRODS = [
    descRu:'Свинина+говядина, лепим вручную. Продаются замороженными — инструкция в комплекте.',
    descEn:'Pork & beef, handmade daily. Sold frozen — cooking instructions included.',
    vars:[{ru:'500 г',en:'500 g',p:29.99},{ru:'1 кг',en:'1 kg',p:54.99},{ru:'2 кг',en:'2 kg',p:99.99}],
-   con:false, sv:0, sc:false, sauce:null,
+   con:false, sv:0, sc:false, sauces_sel:[],
    nu:{ru:{i:'Тесто (мука, вода, яйцо, соль), фарш (свинина 50%, говядина 50%), перец, соль',a:'Глютен, яйца',k:{c:245,p:12,f:11,b:24},
           x:'Настоящие ценители пельменей знают: они должны быть с пылу с жару! Поэтому мы продаём их замороженными — так они сохраняют весь вкус. В каждый заказ вкладываем инструкцию как сварить вкусно.'},
        en:{i:'Dough (flour, water, egg, salt), filling (50% pork, 50% beef), pepper, salt',a:'Gluten (wheat), eggs',k:{c:245,p:12,f:11,b:24},
@@ -429,7 +478,7 @@ var PRODS = [
    descRu:'Нежный домашний яблочный пирог. Один кусочек или целый пирог.',
    descEn:'Light homemade apple cake. One slice or the whole cake.',
    tag:null, vars:[{ru:'1 кусочек',en:'1 slice',p:9.99},{ru:'Целый пирог (8 кусочков)',en:'Whole cake (8 slices)',p:69.99}],
-   con:false, sv:0, sc:false, sauce:null,
+   con:false, sv:0, sc:false, sauces_sel:[],
    nu:{ru:{i:'Яблоки, яйца, сахар, мука пшеничная, масло сливочное, ваниль, разрыхлитель, корица',a:'Глютен, яйца, молоко',k:{c:210,p:4,f:7,b:33}},
        en:{i:'Apples, eggs, sugar, wheat flour, butter, vanilla, baking powder, cinnamon',a:'Gluten (wheat), eggs, milk (butter)',k:{c:210,p:4,f:7,b:33}}}}
 ];
@@ -443,7 +492,7 @@ function renderProducts() {
     var nm = lang === 'ru' ? p.nameRu : p.nameEn;
     var ds = lang === 'ru' ? p.descRu : p.descEn;
     var v = p.vars[p.sv];
-    var tot = v.p + (p.sc ? 4.99 : 0) + (p.sauces && p.sauce !== null ? p.sauces[p.sauce].p : 0);
+    var tot = v.p + (p.sc ? 4.99 : 0) + (p.sauces ? (p.sauces_sel||[]).reduce(function(s,i){return s+p.sauces[i].p;},0) : 0);
 
     var card = document.createElement('div'); card.className = 'pc';
 
@@ -476,9 +525,9 @@ function renderProducts() {
       var sl = document.createElement('div'); sl.className = 'slabel'; sl.textContent = T('slabel'); sw.appendChild(sl);
       var so = document.createElement('div'); so.className = 'sopts';
       p.sauces.forEach(function(s, i) {
-        var b = document.createElement('button'); b.className = 'sbtn' + (p.sauce === i ? ' sel' : '');
+        var b = document.createElement('button'); b.className = 'sbtn' + ((p.sauces_sel||[]).indexOf(i) !== -1 ? ' sel' : '');
         b.textContent = lang === 'ru' ? s.ru : s.en;
-        (function(pid, idx) { b.onclick = function() { var pr = getP(pid); pr.sauce = pr.sauce === idx ? null : idx; renderProducts(); }; })(p.id, i);
+        (function(pid, idx) { b.onclick = function() { var pr = getP(pid); if (!pr.sauces_sel) pr.sauces_sel = []; var pos = pr.sauces_sel.indexOf(idx); if (pos === -1) pr.sauces_sel.push(idx); else pr.sauces_sel.splice(pos, 1); renderProducts(); }; })(p.id, i);
         so.appendChild(b);
       }); sw.appendChild(so); bd.appendChild(sw);
     }
@@ -552,8 +601,8 @@ function addCart(id) {
   var vl = lang === 'ru' ? v.ru : v.en;
   var pr = v.p, meta = [vl];
   if (p.sc) { pr += 4.99; meta.push(lang === 'ru' ? '+контейнер' : '+container'); }
-  if (p.sauces && p.sauce !== null) { var s = p.sauces[p.sauce]; pr += s.p; meta.push(lang === 'ru' ? s.ru : s.en); }
-  var key = id + '-' + p.sv + '-' + p.sc + '-' + p.sauce;
+  if (p.sauces && p.sauces_sel && p.sauces_sel.length) { p.sauces_sel.forEach(function(si){ var s=p.sauces[si]; pr+=s.p; meta.push(lang==='ru'?s.ru:s.en); }); }
+  var key = id + '-' + p.sv + '-' + p.sc + '-' + (p.sauces_sel||[]).join(',');
   var ex = null; cart.forEach(function(i) { if (i.key === key) ex = i; });
   if (ex) { ex.qty++; } else { cart.push({key:key, id:id, qty:1, name:lang==='ru'?p.nameRu:p.nameEn, img:p.img, meta:meta.join(' · '), pr:pr}); }
   updateCart();
@@ -562,13 +611,39 @@ function addCart(id) {
   if (btn) { btn.classList.add('added'); btn.textContent = '✓'; setTimeout(function() { btn.classList.remove('added'); btn.textContent = '+'; }, 1500); }
 }
 
+var FREE_DELIVERY_THRESHOLD = 40;
+var DELIVERY_FEE = 3.99;
+var MIN_ORDER = 15;
+
 function updateCart() {
   var tot = 0, cnt = 0;
   cart.forEach(function(i) { tot += i.pr * i.qty; cnt += i.qty; });
+  var freeDelivery = tot >= FREE_DELIVERY_THRESHOLD;
+  var meetsMin = tot >= MIN_ORDER || cart.length === 0;
+  var grandTotal = tot + (freeDelivery ? 0 : (cart.length ? DELIVERY_FEE : 0));
   document.getElementById('cartBadge').textContent = cnt;
-  document.getElementById('cart-total').textContent = '£' + tot.toFixed(2);
-  document.getElementById('pay-btn').disabled = cart.length === 0;
+  document.getElementById('cart-total').textContent = cart.length ? '£' + grandTotal.toFixed(2) : '£0.00';
+  document.getElementById('pay-btn').disabled = cart.length === 0 || !meetsMin;
+  var minNote = document.getElementById('pay-min-note');
+  minNote.style.display = (cart.length && !meetsMin) ? 'block' : 'none';
+  if (cart.length && !meetsMin) minNote.textContent = lang === 'ru' ? 'Минимальный заказ £15.00' : 'Minimum order £15.00';
+  var delRow = document.getElementById('cart-delivery-row');
+  if (cart.length) {
+    delRow.style.display = 'flex';
+    document.getElementById('cart-del-amount').textContent = freeDelivery ? (lang === 'ru' ? 'Бесплатно 🎉' : 'Free 🎉') : '£' + DELIVERY_FEE.toFixed(2);
+  } else {
+    delRow.style.display = 'none';
+  }
   renderCart();
+}
+
+function openMobMenu() { document.getElementById('mob-menu-ov').classList.add('open'); }
+function closeMobMenu() { document.getElementById('mob-menu-ov').classList.remove('open'); }
+
+function chooseLang(l) {
+  document.getElementById('lang-popup-ov').style.display = 'none';
+  localStorage.setItem('rc-lang-chosen', '1');
+  setLang(l);
 }
 
 function renderCart() {
@@ -604,24 +679,21 @@ function chgQty(key, d) {
 }
 
 function toggleCart() { document.getElementById('cart-dr').classList.toggle('open'); document.getElementById('cart-ov').classList.toggle('open'); }
-function checkout() { if (!cart.length) return; openMod('checkout'); }
-
 var CHECKOUT_URL = 'https://russiancorner.vercel.app/api/checkout';
-function submitCheckout() {
-  var name = document.getElementById('co-name').value.trim();
-  var email = document.getElementById('co-email').value.trim();
-  var phone = document.getElementById('co-phone').value.trim();
-  var addr = document.getElementById('co-addr').value.trim();
-  var instr = document.getElementById('co-instr').value.trim();
-  var time = document.getElementById('co-time').value.trim();
-  var comment = document.getElementById('co-comment').value.trim();
-  if (!name || !email || !phone || !addr) { alert(T('req')); return; }
-  var btn = document.getElementById('co-btn');
-  btn.textContent = T('connecting'); btn.disabled = true;
-  fetch(CHECKOUT_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({cart:cart, customerInfo:{name:name, email:email, phone:phone, address:addr, instructions:instr, time:time, comment:comment}})})
+function checkout() {
+  if (!cart.length) return;
+  var btn = document.getElementById('pay-btn');
+  btn.disabled = true;
+  btn.querySelector('span').textContent = T('connecting');
+  fetch(CHECKOUT_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({cart:cart})})
     .then(function(r) { return r.json(); })
     .then(function(d) { if (d.url) { localStorage.setItem('rc-lang', lang); window.location.href = d.url; } else { throw new Error(d.error || 'Unknown error'); } })
-    .catch(function(e) { alert(T('err') + e.message); btn.textContent = T('lbl-cobtn'); btn.disabled = false; });
+    .catch(function(e) { alert(T('err') + e.message); btn.disabled = false; btn.querySelector('span').textContent = T('lbl-pay2'); });
+}
+
+function closeSuccess() {
+  document.getElementById('ov-success').classList.remove('open');
+  window.history.replaceState({}, '', '/');
 }
 
 function scrollToMenu() { document.getElementById('menu-section').scrollIntoView({behavior:'smooth'}); }
@@ -631,6 +703,35 @@ function toast(msg) { var el = document.getElementById('toast'); el.textContent 
 // Init
 var sl = localStorage.getItem('rc-lang') || 'en';
 setLang(sl);
+
+// Mobile menu labels
+document.getElementById('mm-menu').textContent = sl === 'ru' ? 'Меню' : 'Menu';
+document.getElementById('mm-about').textContent = sl === 'ru' ? 'О нас' : 'About us';
+document.getElementById('mm-delivery').textContent = sl === 'ru' ? 'Доставка и оплата' : 'Delivery & payment';
+
+// Language popup — show only on first visit
+if (!localStorage.getItem('rc-lang-chosen')) {
+  document.getElementById('lang-popup-ov').style.display = 'flex';
+} else {
+  document.getElementById('lang-popup-ov').style.display = 'none';
+}
+
+// Show success popup if returning from Stripe
+if (window.location.search.indexOf('payment=success') !== -1) {
+  var _sucTr = {
+    en: { title:'Order confirmed!', sub:'Thank you! Your payment has been received. We\'re already preparing your order.', next:'What happens next', s1:'A receipt has been sent to your email by Stripe.', s2:'Our courier will call or text you to confirm delivery.', s3:'All dishes are prepared fresh on the day of delivery.', btn:'Back to menu' },
+    ru: { title:'Заказ подтверждён!', sub:'Спасибо! Платёж получен. Мы уже готовим ваш заказ.', next:'Что дальше', s1:'Чек отправлен на вашу почту от Stripe.', s2:'Курьер позвонит или напишет для уточнения времени.', s3:'Все блюда готовятся свежими в день доставки.', btn:'Вернуться в меню' }
+  };
+  var _st = _sucTr[sl] || _sucTr.en;
+  document.getElementById('suc-title').textContent = _st.title;
+  document.getElementById('suc-sub').textContent = _st.sub;
+  document.getElementById('suc-next').textContent = _st.next;
+  document.getElementById('suc-s1').textContent = _st.s1;
+  document.getElementById('suc-s2').textContent = _st.s2;
+  document.getElementById('suc-s3').textContent = _st.s3;
+  document.getElementById('suc-btn').textContent = _st.btn;
+  document.getElementById('ov-success').classList.add('open');
+}
 </script>
 </body>
 </html>
